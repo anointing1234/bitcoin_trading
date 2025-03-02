@@ -3128,7 +3128,7 @@ div[class*=col]:nth-of-type(4n + 4) .plan__item::before, .single-slide:nth-of-ty
 }
 
 .plan__item.style--two {
-    background: linear-gradient(180deg,  #000000  0%, #064aa8 4.58%, #202a95 44.13%, #30178a 77.34%, #361086 100%);
+    background: linear-gradient(180deg,  #000000  0%, #060b13 4.58%, #26551a 44.13%, #1d1b22 77.34%, #0d0d0f 100%);
     border: 0;
     box-shadow: none;
 }
@@ -3138,11 +3138,11 @@ div[class*=col]:nth-of-type(4n + 4) .plan__item::before, .single-slide:nth-of-ty
 }
 
 .plan__item.style--two .plan__item-header::before {
-    background: #18FFFF;
+    background:#0D0D0D;
 }
 
 .plan__item.style--two .plan-parcent-info {
-    color: #18FFFF;
+    color:white;
     font-weight: 500;
 }
 
@@ -3260,7 +3260,7 @@ div[class*=col]:nth-of-type(4n + 4) .plan__item::before, .single-slide:nth-of-ty
     width: 84px;
     height: 84px;
     border-radius: 50%;
-    background: linear-gradient(180deg,  #000000  0%, #064aa8 4.58%, #202a95 44.13%, #30178a 77.34%, #361086 100%);
+    background: #060606;
     font-size: 48px;
     color: #fff;
 }
@@ -3379,7 +3379,7 @@ div[class*=col]:nth-of-type(4n + 4) .plan__item::before, .single-slide:nth-of-ty
     top: 0;
     bottom: 0;
     top: auto;
-    background: linear-gradient(180deg, #04083F00 19%, #010124 81%);
+    background: linear-gradient(180deg, #04083F00 19%, #022401 81%);
     opacity: 1;
     z-index: 1;
 }
@@ -3629,8 +3629,8 @@ div[class*=col]:nth-of-type(4n + 4) .plan__item::before, .single-slide:nth-of-ty
     height: 100%;
     left: 0;
     top: 0;
-    background: #00001C;
     opacity: 0.9;
+    background-color: ;
 }
 
 .faq-section .container {

@@ -1,0 +1,136 @@
+{% load static %}
+
+
+    <!-- Footer Section Starts Here -->
+    <footer style="background-color:#020303;" class="footer-section section-bg">
+        <div class="footer-top padding-top pb-5 border-bottom border--white">
+            <div class="container">
+                <div class="row gy-5 justify-content-md-between">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer__widget">
+                            <h3 class="widget-title">About Company</h3>
+                            <p>Access Forex Concierge is your gateway to the dynamic world of forex trading. We offer expert insights, innovative tools, and dedicated support to help you navigate global currency markets with confidence.</p>
+                             <ul class="social-links">
+                                <li>
+                                    <a class="facebook-bg" href="#0">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="twitter-bg" href="#0">
+                                        <i class="bi bi-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="instagram-bg" href="#0">
+                                        <i class="bi bi-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="pinterest-bg" href="#0">
+                                        <i class="bi bi-pinterest"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer__widget">
+                            <h3 class="widget-title">Useful Links</h3>
+                            <ul class="footer-links">
+                                <li><a href="{% url 'plan' %}">Available Plans</a></li>
+{% comment %}                                 
+                                <li><a href="https:/>Dashboard</a></li> {% endcomment %}
+                                <li><a href="">Create Account</a></li>
+                                <li><a href="{% url 'assets_recovery' %}">assets recovery</a></li>
+                              
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="footer__widget">
+                            <h3 class="widget-title">Company</h3>
+                            <ul class="footer-links">
+                                <li><a href="{% url 'about' %}">About</a></li>
+                               
+                                <li><a href="faq.html">Faq</a></li>
+                                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="copyright text-center py-3">
+                    Copyright &copy; 2025 All Rights Reserved.
+                </p>
+            </div>
+        </div>
+		
+		
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="{% static 'external-embedding/embed-widget-ticker-tape.js' %}" async="">
+  {
+    "symbols": [
+      {
+        "proName": "BITSTAMP:BTCUSD",
+        "title": "Bitcoin"
+      },
+      {
+        "proName": "BITSTAMP:ETHUSD",
+        "title": "Ethereum"
+      },
+      {
+        "description": "Tesla Shares",
+        "proName": "NASDAQ:TSLA"
+      },
+      {
+        "description": "CocaCola Stock",
+        "proName": "NASDAQ:COKE"
+      },
+      {
+        "description": "Apple Stock",
+        "proName": "NASDAQ:AAPL"
+      },
+      {
+        "description": "Meta Shares",
+        "proName": "NASDAQ:META"
+      },
+      {
+        "description": "Oil & Gas",
+        "proName": "NEO:CHEV"
+      },
+      {
+        "description": "Microsoft Shares",
+        "proName": "NASDAQ:MSFT"
+      },
+      {
+        "description": "Amazon Stock",
+        "proName": "NASDAQ:AMZN"
+      },
+      {
+        "description": "Google Stock",
+        "proName": "NASDAQ:GOOG"
+      }
+    ],
+    "showSymbolLogo": true,
+    "isTransparent": false,
+    "displayMode": "adaptive",
+    "colorTheme": "dark",
+    "locale": "en"
+  }
+  </script>
+</div>
+<!-- TradingView Widget END -->
+
+
+		
+		
+		
+    </footer>
+    <!-- Footer Section Ends Here -->

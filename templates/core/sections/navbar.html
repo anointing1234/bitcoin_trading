@@ -1,0 +1,89 @@
+{% load static %}
+
+<div class="preloader">
+    <div class="preinnner">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+    </div>
+</div>
+<div class="overlay"></div>
+
+<!-- Header Section Starts Here -->
+<div class="header">
+    <div class="header-top">
+        <div class="container">
+            
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="container">
+            <div class="header-bottom-area">
+                <div class="logo">
+                    <a href="index.htm">
+                        <img src="{% static 'modules/uss-dashboard/GUI/assets/images/logo.png' %}" alt="logo">
+                    </a>
+                </div>
+                <ul class="menu">
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                       </li>
+                    <li>
+                        <a href="{% url 'about' %}">About</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'plan' %}">Plan</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'assets_recovery' %}">assets recovery</a>
+                    </li>
+                  
+                    <li>
+                        <a href="{% url 'faq'  %}">FAQ</a>
+                    </li>  
+                                          
+                    
+
+                    
+
+                    <li class="p-0 d-lg-none mt-3 mt-lg-0">
+                        <div class="button__wrapper">
+                            <a href="dashboard/register.html" class="cmn--btn">Register</a>
+                            <a href="https://lncnltd.com/dashboard" class="cmn--btn">Login</a>
+                        </div>
+                    </li>
+                </ul>   <!-- Menu End -->
+
+                <div class="button__wrapper d-none d-lg-block">
+                    <a href="" class="cmn--btn">Register</a>
+                    <a href="" class="cmn--btn">Login</a>
+                </div>
+                
+
+                <div class="header-trigger-wrapper d-flex d-lg-none align-items-center">
+                    <div class="mobile-nav-right d-flex align-items-center"></div>
+                    <a href="#0" class="search--btn me-4 text--base"><i class="bi bi-search"></i></a>
+                    <div class="header-trigger d-block d--none">
+                        <span></span>
+                    </div>
+                </div>  <!-- Trigger End-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header Section Ends Here -->
+
+
+<!-- Search Form Starts Here -->
+<div class="search__form__wrapper">
+    <div class="form__inner">
+        <form class="search__form">
+            <div class="form-group">
+                <input type="text" class="form-control form--control" placeholder="Search Here...">
+                <button type="submit" class="cmn--btn btn">Search</button>
+            </div>
+        </form>
+        <button class="btn-close btn-close-white"></button>
+    </div>
+</div>
+<!-- Search Form Ends Here -->

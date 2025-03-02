@@ -28,3 +28,22 @@ from django.db.models import Sum
 
 def home(request):
     return render(request,'home/index.html')
+
+
+def about(request):
+    return render(request,'home/about.html')  
+
+
+def plan(request):
+    return render(request,'home/plan.html')      
+
+def faq(request):
+    return render(request,'home/faq.html')
+
+
+def assets_recovery(request):
+    return render(request,'home/accessrecovery.html')    
+
+
+def contact(request):
+    return render(request,'home/contact_us.html')

@@ -31,7 +31,7 @@ environ.Env.read_env(os.path.join(BASE_DIR,'file.env'))
 SECRET_KEY = 'django-insecure-b#&u@^jh3y0ix6l_86h+g3#n08hp+cv^$rm2pb)imb#&rkxx0w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ["https://accessforexconcierge.com"]
@@ -101,16 +101,16 @@ WSGI_APPLICATION = 'Access_forex.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),  
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('DB_NAME'),  
+#         'USER': env('DB_USER'),
+#         'PASSWORD': env('DB_PASSWORD'),
+#         'HOST': env('DB_HOST'),
+#         'PORT': env('DB_PORT'),
+#     }
+# }
 
 
 # Password validation
@@ -176,133 +176,133 @@ EMAIL_USE_SSL = False
 
 
 
-UNFOLD = {
-    "SITE_HEADER": "mybcplc",
-    "SHOW_SIDEBAR": True,
-    "SITE_TITLE": "mybcplc",
-    "SITE_SUBHEADER": "mybcplc",
-    "SITE_URL": "/",
-    "SITE_ICON": {
-        "light": lambda request: static("assets/img/bank_logo.png"),
-        "dark": lambda request: static("assets/img/bank_logo.png"),
-    },
-    "SITE_LOGO": {
-        "light": lambda request: static("assets/img/bank_logo.png"),
-        "dark": lambda request: static("assets/img/bank_logo.png"),
-    },
-    "DASHBOARD": {
-        "show_search": True,
-        "show_all_applications": True,
-        "cards": [
-            {
-                "title": _("Users"),
-                "icon": "group",
-                "link": reverse_lazy("admin:accounts_account_changelist"),
-                "description": _("Manage users in the system."),
-            },
-            {
-                "title": _("Deposits"),
-                "icon": "account_balance",
-                "link": reverse_lazy("admin:accounts_deposit_changelist"),
-                "description": _("Manage deposits."),
-            },
-            {
-                "title": _("Transfers"),
-                "icon": "swap_horiz",
-                "link": reverse_lazy("admin:accounts_transfer_changelist"),
-                "description": _("Manage transfers."),
-            },
-            {
-                "title": _("Transactions"),
-                "icon": "receipt",
-                "link": reverse_lazy("admin:accounts_transaction_changelist"),
-                "description": _("Manage transactions."),
-            },
-        ],
-    },
-    "SIDEBAR": {
-        "show_search": True,
-        "show_all_applications": True,
-        "navigation": [
-            {
-                "title": _("Menu"),
-                "icon": "account_circle",
-                "collapsible": False,
-                "items": [
-                    {
-                        "title": _("Users"),
-                        "icon": "group",
-                        "link": reverse_lazy("admin:accounts_account_changelist"),
-                    },
-                    {
-                        "title": _("Account Balances"),
-                        "icon": "account_balance_wallet",
-                        "link": reverse_lazy("admin:accounts_accountbalance_changelist"),
-                    },
-                ],
-            },
-            {
-                "title": _("Banking & Cards"),
-                "icon": "credit_card",
-                "collapsible": False,
-                "separator": True,
-                "items": [
-                    {
-                        "title": _("Cards"),
-                        "icon": "credit_card",
-                        "link": reverse_lazy("admin:accounts_card_changelist"),
-                    },
-                    {
-                        "title": _("Deposits"),
-                        "icon": "account_balance",
-                        "link": reverse_lazy("admin:accounts_deposit_changelist"),
-                    },
-                    {
-                        "title": _("Transfers"),
-                        "icon": "swap_horiz",
-                        "link": reverse_lazy("admin:accounts_transfer_changelist"),
-                    },
-                      {
-                        "title": _("Transfer codes"),
-                        "icon": "swap_horiz",
-                        "link": reverse_lazy("admin:accounts_transfercode_changelist"),
-                    },
+# UNFOLD = {
+#     "SITE_HEADER": "mybcplc",
+#     "SHOW_SIDEBAR": True,
+#     "SITE_TITLE": "mybcplc",
+#     "SITE_SUBHEADER": "mybcplc",
+#     "SITE_URL": "/",
+#     "SITE_ICON": {
+#         "light": lambda request: static("assets/img/bank_logo.png"),
+#         "dark": lambda request: static("assets/img/bank_logo.png"),
+#     },
+#     "SITE_LOGO": {
+#         "light": lambda request: static("assets/img/bank_logo.png"),
+#         "dark": lambda request: static("assets/img/bank_logo.png"),
+#     },
+#     "DASHBOARD": {
+#         "show_search": True,
+#         "show_all_applications": True,
+#         "cards": [
+#             {
+#                 "title": _("Users"),
+#                 "icon": "group",
+#                 "link": reverse_lazy("admin:accounts_account_changelist"),
+#                 "description": _("Manage users in the system."),
+#             },
+#             {
+#                 "title": _("Deposits"),
+#                 "icon": "account_balance",
+#                 "link": reverse_lazy("admin:accounts_deposit_changelist"),
+#                 "description": _("Manage deposits."),
+#             },
+#             {
+#                 "title": _("Transfers"),
+#                 "icon": "swap_horiz",
+#                 "link": reverse_lazy("admin:accounts_transfer_changelist"),
+#                 "description": _("Manage transfers."),
+#             },
+#             {
+#                 "title": _("Transactions"),
+#                 "icon": "receipt",
+#                 "link": reverse_lazy("admin:accounts_transaction_changelist"),
+#                 "description": _("Manage transactions."),
+#             },
+#         ],
+#     },
+#     "SIDEBAR": {
+#         "show_search": True,
+#         "show_all_applications": True,
+#         "navigation": [
+#             {
+#                 "title": _("Menu"),
+#                 "icon": "account_circle",
+#                 "collapsible": False,
+#                 "items": [
+#                     {
+#                         "title": _("Users"),
+#                         "icon": "group",
+#                         "link": reverse_lazy("admin:accounts_account_changelist"),
+#                     },
+#                     {
+#                         "title": _("Account Balances"),
+#                         "icon": "account_balance_wallet",
+#                         "link": reverse_lazy("admin:accounts_accountbalance_changelist"),
+#                     },
+#                 ],
+#             },
+#             {
+#                 "title": _("Banking & Cards"),
+#                 "icon": "credit_card",
+#                 "collapsible": False,
+#                 "separator": True,
+#                 "items": [
+#                     {
+#                         "title": _("Cards"),
+#                         "icon": "credit_card",
+#                         "link": reverse_lazy("admin:accounts_card_changelist"),
+#                     },
+#                     {
+#                         "title": _("Deposits"),
+#                         "icon": "account_balance",
+#                         "link": reverse_lazy("admin:accounts_deposit_changelist"),
+#                     },
+#                     {
+#                         "title": _("Transfers"),
+#                         "icon": "swap_horiz",
+#                         "link": reverse_lazy("admin:accounts_transfer_changelist"),
+#                     },
+#                       {
+#                         "title": _("Transfer codes"),
+#                         "icon": "swap_horiz",
+#                         "link": reverse_lazy("admin:accounts_transfercode_changelist"),
+#                     },
                   
-                ],
-            },
-            {
-                "title": _("Finances"),
-                "icon": "attach_money",
-                "collapsible": True,
-                "separator": True,
-                "items": [
-                    {
-                        "title": _("Exchanges"),
-                        "icon": "currency_exchange",
-                        "link": reverse_lazy("admin:accounts_exchange_changelist"),
-                    },
-                    {
-                        "title": _("Exchange Rates"),
-                        "icon": "bar_chart",
-                        "link": reverse_lazy("admin:accounts_exchangerate_changelist"),
-                    },
-                    {
-                        "title": _("Loan Requests"),
-                        "icon": "request_quote",
-                        "link": reverse_lazy("admin:accounts_loanrequest_changelist"),
-                    },
-                    {
-                        "title": _("Payment Gateways"),
-                        "icon": "payment",
-                        "link": reverse_lazy("admin:accounts_paymentgateway_changelist"),
-                    },
-                    {
-                        "title": _("Transactions"),
-                        "icon": "receipt",
-                        "link": reverse_lazy("admin:accounts_transaction_changelist"),
-                    },
-                ],
-            },
-        ],
-    },
-}
+#                 ],
+#             },
+#             {
+#                 "title": _("Finances"),
+#                 "icon": "attach_money",
+#                 "collapsible": True,
+#                 "separator": True,
+#                 "items": [
+#                     {
+#                         "title": _("Exchanges"),
+#                         "icon": "currency_exchange",
+#                         "link": reverse_lazy("admin:accounts_exchange_changelist"),
+#                     },
+#                     {
+#                         "title": _("Exchange Rates"),
+#                         "icon": "bar_chart",
+#                         "link": reverse_lazy("admin:accounts_exchangerate_changelist"),
+#                     },
+#                     {
+#                         "title": _("Loan Requests"),
+#                         "icon": "request_quote",
+#                         "link": reverse_lazy("admin:accounts_loanrequest_changelist"),
+#                     },
+#                     {
+#                         "title": _("Payment Gateways"),
+#                         "icon": "payment",
+#                         "link": reverse_lazy("admin:accounts_paymentgateway_changelist"),
+#                     },
+#                     {
+#                         "title": _("Transactions"),
+#                         "icon": "receipt",
+#                         "link": reverse_lazy("admin:accounts_transaction_changelist"),
+#                     },
+#                 ],
+#             },
+#         ],
+#     },
+# }

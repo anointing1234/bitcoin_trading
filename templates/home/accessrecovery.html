@@ -1,0 +1,166 @@
+{% extends 'core/base/base.html' %}
+{% load static %}
+{% block contents %}
+    
+<div class="inner-banner section-bg overflow-hidden">
+    <div class="container">
+        <div class="inner__banner__content text-center">
+            <h2 class="title">Asset Recovery Cybersecurity</h2>
+            <ul class="breadcums d-flex flex-wrap justify-content-center">
+                <li><a href="index.htm">Home</a>//</li>
+                <li>Asset Recovery</li>
+            </ul>
+        </div>
+    </div>
+    <div class="shapes">
+        <img src="{% static 'modules/uss-dashboard/GUI/assets/images/devices_846x665.png' %}" alt="banner" class="shape shape1">
+        <img src="{% static 'modules/uss-dashboard/GUI/assets/images/devices_846x665.png' %}" alt="banner" class="shape shape2 d-none d-lg-block">
+    </div>
+</div>
+
+<!-- Asset Recovery Section Starts Here -->
+<section class="asset-recovery padding-bottom mt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="section__thumb asset__recovery__thumb rtl me-5">
+                    <img src="{% static 'modules/alpha-shares/template/public/assets/images/recovery/assets_recovery.png' %}" alt="asset-recovery">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="asset__recovery__content">
+                    <div class="section__header">
+                        <h2 class="section__header-title">Proven Experience in Asset Recovery</h2>
+                        <p>At Access Forex Concierge, we specialize in recovering lost assets through our expert cybersecurity measures and proven strategies. Fill out the application form below to get started.</p>
+                    </div>
+                    <form class="asset__recovery__form" id="recoveryForm">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-12 col-xl-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control form--control" id="fullName" placeholder="John Doe" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-12 col-xl-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control form--control" id="email" placeholder="example@example.com" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-12 col-xl-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control form--control" id="phone" placeholder="+1 234 567 890" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-12 col-xl-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Amount Lost</label>
+                                    <input type="number" class="form-control form--control" id="amountLost" placeholder="$10,000" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-12 col-xl-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Type of Assets to Recover</label>
+                                    <input type="text" class="form-control form--control" id="assetType" placeholder="e.g., Funds, Cryptocurrency, etc." required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-12 col-xl-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Description of the Incident</label>
+                                    <textarea class="form-control form--control" id="incidentDescription" rows="4" placeholder="Please describe the incident..." required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="cmn--btn mt-4" onclick="submitRecoveryForm()">Submit Application</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Asset Recovery Team Section Starts Here -->
+<section class="asset-recovery-team padding-top padding-bottom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-10">
+                <div class="section__header text-center">
+                    <h2 class="section__header-title">Meet Our Asset Recovery Team</h2>
+                    <p>Our dedicated team of experts is committed to helping you recover lost assets with professionalism and expertise.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center gy-5">
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="investor__item">
+                    <div class="investor__item-thumb">
+                        <img src="{% static 'modules/alpha-shares/template/public/assets/images/recovery/recover_team1.jpg' %}" alt="team member">
+                    </div>
+                    <div class="investor__item-content">
+                        <h3 class="name">Michael Thompson</h3>
+                        <p class="role">Lead Asset Recovery Specialist</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="investor__item">
+                    <div class="investor__item-thumb">
+                        <img src="{% static 'modules/alpha-shares/template/public/assets/images/recovery/recover_team2.jpg' %}" alt="team member">
+                    </div>
+                    <div class="investor__item-content">
+                        <h3 class="name">Sarah Johnson</h3>
+                        <p class="role">Cybersecurity Analyst</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="investor__item">
+                    <div class="investor__item-thumb">
+                        <img src="{% static 'modules/alpha-shares/template/public/assets/images/recovery/recover_team3.jpg' %}" alt="team member">
+                    </div>
+                    <div class="investor__item-content">
+                        <h3 class="name">David Smith</h3>
+                        <p class="role">Fraud Investigation Expert</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="investor__item">
+                    <div class="investor__item-thumb">
+                        <img src="{% static 'modules/alpha-shares/template/public/assets/images/recovery/recover_team4.jpg' %}" alt="team member">
+                    </div>
+                    <div class="investor__item-content">
+                        <h3 class="name">Emily Davis</h3>
+                        <p class="role">Client Relations Manager</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Asset Recovery Team Section Ends Here -->
+
+
+<script>
+    function submitRecoveryForm() {
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const amountLost = document.getElementById('amountLost').value;
+        const assetType = document.getElementById('assetType').value;
+        const incidentDescription = document.getElementById('incidentDescription').value;
+
+        if (fullName && email && phone && amountLost && assetType && incidentDescription) {
+            // Here you can add the logic to send the form data to your server
+            alert("Your application has been submitted successfully!");
+            // Reset the form document.getElementById('recoveryForm').reset();
+        } else {
+            alert("Please fill in all fields before submitting.");
+        }
+    }
+</script>
+
+{% endblock contents %}
