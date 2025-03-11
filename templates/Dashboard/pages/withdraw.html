@@ -1,0 +1,209 @@
+{% extends '../core/base.html' %}
+{% load static %}
+{% block contents %}
+
+<div class="container">
+    <div class="page-inner bg-dark">
+        <div class="row mb-5 pb-5 p-0">
+            <div class="row mx-1">
+                <div class="card mt-5 pt-5">
+                    <div class="card-body">
+                        <div class="card-header text-start bg-dark text-white">
+                            <h4>Withdraw Funds</h4>
+                        </div>
+                        <form class="form row" method="post" action="{% url 'withdraw_funds' %}">
+                            {% csrf_token %}
+                            <fieldset class="col-12">
+                                <div class="row">
+                                    <!-- Withdrawal Currency -->
+                                    <div class="col-12 my-2">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fa fa-wallet"></i></span>
+                                            <select class="form-control" name="withdraw_currency" id="withdrawCurrency" required onchange="updateWithdrawAddress()">
+                                                <option value="">Select Currency</option>
+                                                {% for wallet in wallet_addresses %}
+                                                    <option value="{{ wallet.currency }}">{{ wallet.currency }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Withdrawal Address with Copy Button -->
+                                    <div class="col-12 my-2">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fa fa-coins"></i></span>
+                                            <input type="text" class="form-control" id="withdrawAddress" name="withdraw_address" required readonly>
+                                            <button type="button" class="btn btn-outline-secondary" onclick="copyWithdrawAddress()">
+                                                <i class="fa fa-clipboard"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Withdrawal Amount -->
+                                    <div class="col-12 my-2">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
+                                            <input type="number" class="form-control" name="withdraw_amount" required placeholder="Withdrawal Amount" step="0.01">
+                                        </div>
+                                    </div>
+                                    <!-- Request Code Button -->
+                                    <div class="col-12 my-2">
+                                        <button type="button" id="request-code" class="btn btn-dark w-100">withdraw</button>
+                                    </div>
+                                   
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const walletAddresses = {
+        {% for wallet in wallet_addresses %}
+            "{{ wallet.currency }}": "{{ wallet.address }}",
+        {% endfor %}
+    };
+
+    function updateWithdrawAddress() {
+        let withdrawCurrency = document.getElementById("withdrawCurrency").value;
+        let withdrawAddressField = document.getElementById("withdrawAddress");
+
+        withdrawAddressField.value = walletAddresses[withdrawCurrency] || '';
+    }
+
+    function copyWithdrawAddress() {
+        let withdrawAddressField = document.getElementById("withdrawAddress");
+        navigator.clipboard.writeText(withdrawAddressField.value)
+            .then(() => {
+                alert("Withdrawal address copied!");
+            })
+            .catch(err => console.error("Error copying withdrawal address:", err));
+    }
+
+    // Set default withdrawal address on page load
+    window.onload = updateWithdrawAddress;
+
+
+</script>
+
+<!-- Toastify CSS & JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.getElementById("request-code").addEventListener("click", function () {
+        let button = this;
+        button.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processing...';
+        button.disabled = true;
+
+        $.ajax({
+            url: "{% url 'send_withdrawal_code' %}",
+            type: "GET",
+            success: function (response) {
+                if (response.success) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Code Sent!",
+                        text: "A withdrawal code has been sent to your email.",
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+
+                    setTimeout(showInputPopup, 1000);
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error!",
+                        text: "Failed to send the withdrawal code. Please try again!",
+                    });
+                }
+            },
+            error: function () {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops!",
+                    text: "An error occurred! Please try again.",
+                });
+            },
+            complete: function () {
+                button.innerHTML = "Withdraw";
+                button.disabled = false;
+            }
+        });
+    });
+
+    function showInputPopup() {
+        Swal.fire({
+            title: "Enter Withdrawal Code",
+            input: "text",
+            inputPlaceholder: "Enter the code sent to your email",
+            showCancelButton: true,
+            confirmButtonText: "Submit",
+            preConfirm: (code) => {
+                return fetch("{% url 'verify_withdrawal_code' %}", {
+                    method: "POST",
+                    credentials: "same-origin",
+                    headers: {
+                        "X-CSRFToken": "{{ csrf_token }}",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ code: code })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        throw new Error(data.message);
+                    }
+                    return data;
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(error.message);
+                });
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Verified!",
+                    text: "Your withdrawal request is being processed.",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+        
+                // Capture the form data using jQuery's serialize() method
+                let formData = $("form").serialize();
+        
+                // Send the data to the withdraw_funds view via AJAX
+                $.ajax({
+                    url: "{% url 'withdraw_funds' %}",
+                    type: "POST",
+                    data: formData,
+                    success: function(response) {
+                        // Handle success (e.g., show a success message or redirect)
+                        Swal.fire({
+                            icon: "success",
+                            title: "Withdrawal Successful!",
+                            text: "Your withdrawal has been processed.",
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => {
+                            // Redirect after the alert closes
+                            window.location.href = "{% url 'withdraw_history' %}";
+                        });
+                    },
+                    error: function(error) {
+                        // Handle error (e.g., display an error message)
+                        Swal.fire({
+                            icon: "error",
+                            title: "Withdrawal Failed!",
+                            text: "There was an error processing your withdrawal. Please try again.",
+                        });
+                    }
+                });
+            }
+        });        
+    }
+</script>
+
+{% endblock contents %}

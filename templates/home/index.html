@@ -1,6 +1,9 @@
 {% extends 'core/base/base.html' %}
 {% load static %}
 {% block contents %}
+
+
+
     
     
         <!-- Banner Section Starts Here -->
@@ -10,7 +13,7 @@
                     <div class="banner__content">
                         <h1 class="title">Welcome to Access Forex Concierge </h1>
                         <p>
-                            Your Trusted Partner for Seamless and Secure Forex Transactions. 
+                              
                             Gain access to over <strong>200 cutting-edge trading software</strong> tools to enhance your trading strategies.
                         </p>
                         <a href="dashboard/register" class="cmn--btn">Get Started</a>
@@ -23,6 +26,9 @@
         </section>
         
     <!-- Banner Section Ends Here -->
+
+
+ 
 
 
     <!-- Why Choose Us Section Starts Here -->
@@ -62,6 +68,11 @@
         </div>
     </section>
     <!-- Why Choose Us Section Ends Here -->
+
+
+
+    
+
 
 <!-- Feature Section Starts Here -->
 <section class="feature-section padding-bottom overflow-hidden">
@@ -126,7 +137,7 @@
 </section>
 <!-- Feature Section Ends Here -->
 
-
+{% comment %} 
     <!-- Referral Section Starts Here -->
     <section class="referral-section padding-top padding-bottom section-bg">
         <div class="container">
@@ -150,26 +161,171 @@
             </div>
         </div>
     </section>
-    <!-- Referral Section Ends Here -->
+    <!-- Referral Section Ends Here --> {% endcomment %}
 
 
     <!-- Investor Section Starts Here -->
     
     <!-- Investor Section Ends Here -->
+<!-- Steps Section Starts Here -->
+<section class="feature-section padding-bottom overflow-hidden">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+          <div class="section__header text-center">
+            <h2 class="section__header-title">How It Works</h2>
+            <p>Follow these simple steps to start your trading journey.</p>
+          </div>
+        </div>
+      </div>
+      <div class="feature__slider">
+        <!-- Slide 1: Select Your Account Size -->
+        <div class="single-slide">
+          <div class="feature__item">
+            <div class="feature__item-icon">
+              <img src="{% static 'assets/img/select.svg' %}" alt="Select Your Account Size">
+            </div>
+            <div class="feature__item-content">
+              <h4 class="title">Select Your Account Size</h4>
+              <p>
+                Select your Futures account. Register and define the maximum contract size you'll manage—ideally one that fits your skills. Buy a subscription now and go on.
+              </p>
+              <p><strong>What Futures Can I Trade?</strong></p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2: Prove You Can Trade -->
+        <div class="single-slide">
+          <div class="feature__item">
+            <div class="feature__item-icon">
+              <img src="{% static 'assets/img/prove.svg' %}" alt="Prove You Can Trade">
+            </div>
+            <div class="feature__item-content">
+              <h4 class="title">Prove You Can Trade</h4>
+              <p>
+                Reach a profit target while proving you can follow a set of risk rules. You become a PRO trader as soon as your skills are verified.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 3: Start Earning Money -->
+        <div class="single-slide">
+          <div class="feature__item">
+            <div class="feature__item-icon">
+              <img src="{% static 'assets/img/earn_money.svg' %}" alt="Start Earning Money">
+            </div>
+            <div class="feature__item-content">
+              <h4 class="title">Start Earning Money</h4>
+              <p>
+                No downtime. Once approved, get your PRO account and start trading for day one withdrawable profits.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 4: Withdraw Into Your Account -->
+        <div class="single-slide">
+          <div class="feature__item">
+            <div class="feature__item-icon">
+              <img src="{% static 'assets/img/withdraw.svg' %}" alt="Withdraw Into Your Account">
+            </div>
+            <div class="feature__item-content">
+              <h4 class="title">Withdraw Into Your Account</h4>
+              <p>
+                Money is nothing until it is in your pocket. Withdraw your profits with our automated system – you keep 80%.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 5: Upgrade to PRO+ -->
+      
+      </div>
+    </div>
+  </section>
+  <!-- Steps Section Ends Here -->
 
+
+
+  <!-- Comparison Section Starts Here -->
+<section class="comparison-section py-5 text-white" style="background: #1D1E22;">
+    <div class="container">
+      <!-- Heading & Description -->
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          <h2 class="mb-3">Differences Between Access Forex Concierge and Other Companies</h2>
+          <p class="mb-5">
+            The table below displays how Access Forex Concierge stands out from other forex services. Our platform is designed to provide traders with advanced features, transparent pricing, and day-one profit opportunities.
+          </p>
+        </div>
+      </div>
+  
+      <!-- Table Wrapper -->
+      <div class="table-responsive">
+        <table class="table table-borderless table-dark mb-0">
+          <thead>
+            <tr>
+              <th style="background: transparent;">Features/Services</th>
+              <!-- Middle Column Highlight -->
+              <th class="text-center" style="background: #214F2C;">Access Forex Concierge</th>
+              <th class="text-center" style="background: transparent;">Other Companies</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Minimum Trading Capital</td>
+              <td class="text-center" style="background: #1B3E24;">$100</td>
+              <td class="text-center">$500</td>
+            </tr>
+            <tr>
+              <td>Commission</td>
+              <td class="text-center" style="background: #1B3E24;">Zero Commission</td>
+              <td class="text-center">Standard Commission</td>
+            </tr>
+            <tr>
+              <td>Spreads</td>
+              <td class="text-center" style="background: #1B3E24;">From 0.0 pips</td>
+              <td class="text-center">From 1.5 pips</td>
+            </tr>
+            <tr>
+              <td>Execution Speed</td>
+              <td class="text-center" style="background: #1B3E24;">Lightning-fast</td>
+              <td class="text-center">Standard</td>
+            </tr>
+            <tr>
+              <td>Profit Withdrawals</td>
+              <td class="text-center" style="background: #1B3E24;">Instant</td>
+              <td class="text-center">Delayed</td>
+            </tr>
+            <tr>
+              <td>Platform Tools</td>
+              <td class="text-center" style="background: #1B3E24;">Advanced & Automated</td>
+              <td class="text-center">Basic Tools</td>
+            </tr>
+            <tr>
+              <td>Customer Support</td>
+              <td class="text-center" style="background: #1B3E24;">24/7 Live Chat &amp; Phone</td>
+              <td class="text-center">Limited Hours</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!-- Comparison Section Ends Here -->
+  
+  
 
     <!-- Download Section Starts Here -->
     <section class="download-section padding-bottom section-bg-two overflow-hidden">
-        <div class="container">
+        <div class="container mt-5">
             <div class="row align-items-center">
                 <div class="col-lg-7">
-                    <div class="section__header">
+                    <div class="section__header mt-5">
                         <h2 class="section__header-title">Download Our App</h2>
                         <p>You can register and download our app on your mobile device. This will assist you to easily access you account on our platform.</p>
                     </div>
                     <div class="button__wrapper">
-                        <a href="https://lncnltd.com/dashboard" class="cmn--btn download-btn"><div class="icon"><i class="bi bi-google-play"></i></div> <div class="text"><p>DOWNLOAD</p><p class="for">For Android</p></div></a>
-                        <a href="https://lncnltd.com/dashboard" class="cmn--btn download-btn"><div class="icon"><i class="bi bi-apple"></i></div> <div class="text"><p>DOWNLOAD</p><p class="for">For IOS</p></div></a>
+                        <a href="{% url 'login_view' %}" class="cmn--btn download-btn"><div class="icon"><i class="bi bi-google-play"></i></div> <div class="text"><p>DOWNLOAD</p><p class="for">For Android</p></div></a>
+                        <a href="{% url 'login_view' %}" class="cmn--btn download-btn"><div class="icon"><i class="bi bi-apple"></i></div> <div class="text"><p>DOWNLOAD</p><p class="for">For IOS</p></div></a>
                     </div>
                     <div class="counter__wrapper row gy-4 gy-sm-5 pt-4 pt-sm-5">
                         <div class="col-6 col-sm-6 col-md-4 col-lg-6 col-xl-4">
@@ -218,6 +374,7 @@
     <!-- Download Section Ends Here -->
 
 
+    
    
 
 
@@ -276,5 +433,7 @@
         </div>
     </section>
     <!-- Testimonial Section Ends Here -->
+
+
 
     {% endblock contents %}

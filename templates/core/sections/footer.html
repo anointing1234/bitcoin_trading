@@ -39,9 +39,7 @@
                             <h3 class="widget-title">Useful Links</h3>
                             <ul class="footer-links">
                                 <li><a href="{% url 'plan' %}">Available Plans</a></li>
-{% comment %}                                 
-                                <li><a href="https:/>Dashboard</a></li> {% endcomment %}
-                                <li><a href="">Create Account</a></li>
+                                <li><a href="{% url 'register' %}">Create Account</a></li>
                                 <li><a href="{% url 'assets_recovery' %}">assets recovery</a></li>
                               
                                 
@@ -64,8 +62,8 @@
         </div>
         <div class="footer-bottom">
             <div class="container">
-                <p class="copyright text-center py-3">
-                    Copyright &copy; 2025 All Rights Reserved.
+                <p class="copyright text-center  py-3">
+                    Copyright &copy; <span class="text-light">2025 All Rights Reserved.</span>
                 </p>
             </div>
         </div>

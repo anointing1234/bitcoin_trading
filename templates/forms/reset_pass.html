@@ -1,0 +1,341 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    
+   
+    <title>ACCESS FOREX CONCIERGE LTD</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name='description' content='ACCESS FOREX CONCIERGE LTD is your trusted partner in the world of digital finance'>
+			<link rel="shortcut icon" href="{% static 'modules/uss-dashboard/GUI/assets/images/logo.png' %}" type="image/x-icon">
+        
+            <link rel="stylesheet" href="{% static 'cores/assets/css/bootstrap.min.css' %}" data-name="bootstrap">
+			<link rel="stylesheet" href="{% static 'cores/assets/vendor/bootstrap-icons/bootstrap-icons.min.css' %}" data-name="bootstrap-icon">
+			<link rel="stylesheet" href="{% static 'cores/assets/css/animate.min.css' %}" data-name="animate">
+			<link rel="stylesheet" href="{% static 'cores/assets/vendor/glightbox/glightbox.min.css' %}" data-name="glightbox">
+			<link rel="stylesheet" href="{% static 'cores/assets/vendor/toastify/toastify.min.css' %}" data-name="toastify">
+			<link rel="stylesheet" href="{% static 'cores/assets/css/font-size.min.css' %}" data-name="font-size">
+			<link rel="stylesheet" href="{% static 'cores/assets/css/main.css' %}" data-name="main-css"> 				
+			<link rel="stylesheet" href="{% static 'modules/uss-dashboard/GUI/themes/classic/assets/css/default.css'%}">        
+</head>
+
+
+<body>
+
+            
+        
+    <div class="row g-0 min-vh-100">
+
+        
+            <div class="col-lg-6">
+                
+                                
+                    <div  class="auth-cover-wrapper">
+                        <div class="auth-cover px-sm-5">
+                            <div class="title text-center">
+							
+                                                                                                                                                
+								<div class='mb-2'>
+                                            <img src='{% static 'modules/uss-dashboard/GUI/assets/images/logo.png' %}' class='img-fluid user-select-none'>
+                                        </div>
+                                                                    
+                                                                    <h1 class="text-white mb-2">
+																		
+                                    </h1>
+                                
+                                                                    <p class="text-light">
+																		JOIN OUR ELITE NETWORK AND ENJOY SEAMLESS AND SECURE TRADING 
+																			
+                                    </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                                 
+            </div>
+
+         
+        
+			<div class="col-lg-6">
+				<div class="row g-0 align-items-center justify-content-center bg-light p-5 h-100">
+					<div class="col-sm-10 col-md-9 m-auto">
+		
+						<h3>Reset Password</h3>
+						
+						<form class="form row" method="post" id="reset-form" action="{% url 'verify_reset_code' %}">
+							{% csrf_token %}
+							
+							<div class="col-12 my-2">
+								<label class="form-label">Reset Code</label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="bi bi-key"></i></span>
+									<input type="number" class="form-control" required placeholder="Reset Code" name="reset_code" id="reset_code">
+								</div>
+							</div>
+							
+		
+							<div class="col-12 my-2">
+								<label class="form-label">Email Address</label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="bi bi-at"></i></span>
+									<input type="email" class="form-control" required placeholder="Email" name="email" id="email">
+								</div>
+							</div>
+							
+							<div class="col-12 my-2">
+								<label class="form-label">New Password</label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="bi bi-lock"></i></span>
+									<input type="password" class="form-control" required placeholder="New Password" pattern="^.{4,}$" name="password" id="password">
+								</div>
+							</div>
+		
+							<div class="col-12 my-2">
+								<label class="form-label">Confirm Password</label>
+								<div class="input-group">
+									<span class="input-group-text"><i class="bi bi-lock"></i></span>
+									<input type="password" class="form-control" required placeholder="Confirm Password" name="confirm_password" id="confirm_password">
+								</div>
+							</div>
+		
+							<div class="col-12 my-3">
+								<button type="submit" class="btn btn-primary w-100">Reset Password</button>
+							</div>
+						</form>
+		
+						<hr>
+		
+				 
+		
+					</div>
+				</div>
+			</div>
+
+         
+    </div>
+
+
+            
+<script type="text/javascript" src="{% static  'cores/assets/js/vue.global.prod.min.js' %}" data-name="vue"></script>
+<script type="text/javascript" src="{% static 'cores/assets/js/jquery-3.7.1.min.js' %}" data-name="jquery"></script>
+<script type="text/javascript" src="{% static 'cores/assets/js/bootstrap.bundle.min.js' %}" data-name="bootstrap-bundle"></script>
+<script type="text/javascript" src="{% static 'cores/assets/js/bootbox.all.min.js' %}" data-name="bootbox"></script>
+<script type="text/javascript" src="{% static 'cores/assets/vendor/glightbox/glightbox.min.js' %}" data-name="glightbox"></script>
+<script type="text/javascript" src="{% static 'cores/assets/vendor/toastify/toastify-js.js' %}" data-name="toastify"></script>
+<script type="text/javascript" src="{% static 'cores/assets/vendor/notiflix/notiflix-loading-aio-3.2.7.min.js' %}" data-name="notiflix-loading"></script>
+<script type="text/javascript" src="{% static 'cores/assets/vendor/notiflix/notiflix-block-aio-3.2.7.min.js' %}" data-name="notiflix-block"></script>
+<script type="text/javascript" src="{% static 'cores/assets/js/main.js" data-name="main-js' %}"></script>        
+<script src="{% static 'modules/uss-dashboard/GUI/assets/js/data-magic.js' %}"></script>
+<script src="{% static 'modules/uss-dashboard/Foundation/User/assets/js/security.js' %}"></script>
+
+
+
+<!-- Toastify CSS & JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("reset-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            let resetCode = document.getElementById("reset_code").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let confirmPassword = document.getElementById("confirm_password").value.trim();
+
+            if (!resetCode || !email || !password || !confirmPassword) {
+                Toastify({
+                    text: "All fields are required!",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "red",
+                }).showToast();
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                Toastify({
+                    text: "New password and confirm password do not match!",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "red",
+                }).showToast();
+                return;
+            }
+
+            this.submit(); // Proceed with form submission
+        });
+    });
+
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        {% if messages %}
+            {% for message in messages %}
+                Toastify({
+                    text: "{{ message }}",
+                    duration: 5000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "{% if message.tags == 'success' %}green{% else %}red{% endif %}",
+                }).showToast();
+
+                {% if message.tags == "success" %}
+                    setTimeout(() => {
+                        window.location.href = "{% url 'login_view' %}";
+                    }, 5000);
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    });
+</script>
+
+
+    
+</body>
+
+</html>
+
+
+
+
+
+
+
+{% comment %} {% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>ACCESS FOREX CONCIERGE LTD</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='description' content='ACCESS FOREX CONCIERGE LTD is your trusted partner in the world of digital finance'>
+
+    <link rel="shortcut icon" href="{% static 'modules/uss-dashboard/GUI/assets/images/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'cores/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cores/assets/vendor/bootstrap-icons/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cores/assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cores/assets/css/main.css' %}">  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body>
+
+<div class="row g-0 min-vh-100">
+	<div class="col-lg-6">
+                
+                                
+		<div  class="auth-cover-wrapper">
+			<div class="auth-cover px-sm-5">
+				<div class="title text-center">
+				
+																																	
+					<div class='mb-2'>
+								<img src='{% static 'modules/uss-dashboard/GUI/assets/images/logo.png' %}' class='img-fluid user-select-none'>
+							</div>
+														
+														<h1 class="text-white mb-2">
+															
+						</h1>
+					
+														<p class="text-light">
+															JOIN OUR ELITE NETWORK AND ENJOY SEAMLESS AND SECURE TRADING 
+																
+						</p>
+					
+				</div>
+			</div>
+		</div>
+		
+					 
+</div>
+
+  
+</div>
+
+<script src="{% static 'cores/assets/js/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'cores/assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("reset-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            let resetCode = document.getElementById("reset_code").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let confirmPassword = document.getElementById("confirm_password").value.trim();
+
+            if (!resetCode || !email || !password || !confirmPassword) {
+                Toastify({
+                    text: "All fields are required!",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "red",
+                }).showToast();
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Password Mismatch",
+                    text: "New password and confirm password do not match!",
+                });
+                return;
+            }
+
+            // Show a loading message before submitting
+            Swal.fire({
+                title: "Processing...",
+                text: "Please wait while we reset your password.",
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            });
+
+            // Simulate form submission
+            setTimeout(() => {
+                this.submit(); // Proceed with form submission
+            }, 1000);
+        });
+    });
+
+    // Show success message if password reset was successful
+    {% if messages %}
+        {% for message in messages %}
+            {% if "Password reset successful" in message %}
+                Swal.fire({
+                    icon: "success",
+                    title: "Success!",
+                    text: "Your password has been reset successfully. Redirecting to login...",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                }).then(() => {
+					setTimeout(() => {
+						window.location.href = "{% url 'login_view' %}";
+					},2000);
+					 // Redirect to login page
+                });
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</script>
+
+
+</body>
+</html> {% endcomment %}

@@ -1,0 +1,395 @@
+{% extends '../core/base.html' %}
+{% load static %}
+{% block contents %}
+{% load humanize %}
+
+<style>
+    .carddiv{
+        height: 200px;
+        position: relative; /* Position relative to allow absolute positioning of the overlay */
+        overflow: hidden; /* Prevent overflow of the overlay */
+    }
+    
+    .carddiv::before {
+        content: ""; /* Create a pseudo-element */
+        position: absolute; /* Position it absolutely within the card */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        
+        background-size: cover;
+        background-repeat: no-repeat;
+        filter: brightness(0.5) contrast(1.2); /* Adjust brightness and contrast */
+        z-index: 1; /* Place it below the text */
+    }
+    
+    .card-body {
+        position: relative; /* Position relative to allow stacking of text above the overlay */
+        z-index: 2; /* Place it above the overlay */
+        color: white; /* Ensure text is white for better visibility */
+    }
+    .card-title {
+        font-size: 30px;
+    }
+</style>
+
+<div class="container">
+    <div class="page-inner bg-dark">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="card carddiv bg-dark card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <h5 class="fw-bold text-light">Total Balance 
+                                        <i class="fa-solid fa-eye toggle-balance-icon"
+                                           data-target="available-balance-credit-1"
+                                           data-key="balanceHidden-savings"
+                                           style="cursor:pointer;"></i>
+                                    </h5>
+                                    <h2 class="card-title text-light mt-3 mb-3 toggle-balance" id="available-balance-credit-1"
+                                        data-hidden="true"
+                                        data-balance="${{ request.user.balance.usdt_balance|intcomma }}">${{ request.user.balance.usdt_balance|intcomma }}</h2>
+                                    <p class="rounded text-center mt-2" style="background-color:rgb(105, 101, 101); color:white; padding:5px;">
+                                        BTC: <span class="text-success" id="btc-price">Loading...</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Displaying Prices with Symbols -->
+                        <p class="text-light text-start mt-2">
+                            <span>ETH: <span id="eth-price">Loading...</span></span> &nbsp; 
+                            <span>TRX: <span id="trx-price">Loading...</span></span> &nbsp; 
+                            <span>LTC: <span id="ltc-price">Loading...</span></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6 col-md-4">
+                <div class="card bg-dark   card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row align-items-center">
+                            <div class="col border card-round py-2 col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <h5 class="fw-bold text-light">Total profits 
+                                        <i class="fa-solid fa-eye toggle-balance-icon"
+                                           data-target="available-balance-credit-2"
+                                           data-key="balanceHidden-savings"
+                                           style="cursor:pointer;"></i>
+                                    </h5>
+                                    <h2 class="card-title text-light toggle-balance" id="available-balance-credit-2"
+                                        data-hidden="true"
+                                        data-balance="{{ request.user.balance.total_profits|intcomma }}">${{ request.user.balance.total_profits|intcomma }}</h2>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Displaying Prices with Symbols -->
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="card  bg-dark card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row align-items-center">
+                            <div class="col border card-round py-2  col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <h5 class="fw-bold text-light">Total investments
+                                        <i class="fa-solid fa-eye toggle-balance-icon"
+                                           data-target="available-balance-credit-3"
+                                           data-key="balanceHidden-savings"
+                                           style="cursor:pointer;"></i>
+                                    </h5>
+                                              <h2 class="card-title text-light toggle-balance" id="available-balance-credit-3"
+                                            data-hidden="true"
+                                            data-balance=" ${{ total_investment|intcomma }}">
+                                            ${{ total_investment|intcomma }}
+                                        </h2>
+                                       
+                                                                        
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Displaying Prices with Symbols -->
+                      
+                    </div>
+                </div>
+            </div>
+    
+    
+            <div class="container-fluid" >
+                <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+    {
+    "colorTheme": "dark",
+    "dateRange": "12M",
+    "showChart": true,
+    "locale": "en",
+    "width": "100%",
+    "height": "700",
+    "largeChartUrl": "",
+    "isTransparent": true,
+    "showSymbolLogo": true,
+    "showFloatingTooltip": false,
+    "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+    "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+    "gridLineColor": "rgba(42, 46, 57, 0)",
+    "scaleFontColor": "rgba(219, 219, 219, 1)",
+    "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+    "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+    "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+    "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+    "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+    "tabs": [
+      {
+        "title": "Indices",
+        "symbols": [
+          {
+            "s": "FOREXCOM:SPXUSD",
+            "d": "S&P 500 Index"
+          },
+          {
+            "s": "FOREXCOM:NSXUSD",
+            "d": "US 100 Cash CFD"
+          },
+          {
+            "s": "FOREXCOM:DJI",
+            "d": "Dow Jones Industrial Average Index"
+          },
+          {
+            "s": "INDEX:NKY",
+            "d": "Japan 225"
+          },
+          {
+            "s": "INDEX:DEU40",
+            "d": "DAX Index"
+          },
+          {
+            "s": "FOREXCOM:UKXGBP",
+            "d": "FTSE 100 Index"
+          }
+        ],
+        "originalTitle": "Indices"
+      },
+      {
+        "title": "Futures",
+        "symbols": [
+          {
+            "s": "CME_MINI:ES1!",
+            "d": "S&P 500"
+          },
+          {
+            "s": "CME:6E1!",
+            "d": "Euro"
+          },
+          {
+            "s": "COMEX:GC1!",
+            "d": "Gold"
+          },
+          {
+            "s": "NYMEX:CL1!",
+            "d": "WTI Crude Oil"
+          },
+          {
+            "s": "NYMEX:NG1!",
+            "d": "Gas"
+          },
+          {
+            "s": "CBOT:ZC1!",
+            "d": "Corn"
+          }
+        ],
+        "originalTitle": "Futures"
+      },
+      {
+        "title": "Bonds",
+        "symbols": [
+          {
+            "s": "CBOT:ZB1!",
+            "d": "T-Bond"
+          },
+          {
+            "s": "CBOT:UB1!",
+            "d": "Ultra T-Bond"
+          },
+          {
+            "s": "EUREX:FGBL1!",
+            "d": "Euro Bund"
+          },
+          {
+            "s": "EUREX:FBTP1!",
+            "d": "Euro BTP"
+          },
+          {
+            "s": "EUREX:FGBM1!",
+            "d": "Euro BOBL"
+          }
+        ],
+        "originalTitle": "Bonds"
+      },
+      {
+        "title": "Forex",
+        "symbols": [
+          {
+            "s": "FX:EURUSD",
+            "d": "EUR to USD"
+          },
+          {
+            "s": "FX:GBPUSD",
+            "d": "GBP to USD"
+          },
+          {
+            "s": "FX:USDJPY",
+            "d": "USD to JPY"
+          },
+          {
+            "s": "FX:USDCHF",
+            "d": "USD to CHF"
+          },
+          {
+            "s": "FX:AUDUSD",
+            "d": "AUD to USD"
+          },
+          {
+            "s": "FX:USDCAD",
+            "d": "USD to CAD"
+          }
+        ],
+        "originalTitle": "Forex"
+      }
+    ]
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    const apiKey = 'coinrankingccb1f9fa3faa00602976ee13e42ad747132d9c6136b69225';
+    const coinsUrl = 'https://api.coinranking.com/v2/coins?limit=50&orderBy=marketCap&orderDirection=desc';
+
+    // Function to fetch live prices for BTC, ETH, TRX, and LTC
+    function fetchLivePrices() {
+        fetch(coinsUrl, {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': apiKey
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const coins = data.data.coins;
+            const btcData = coins.find(coin => coin.name === 'Bitcoin');
+            const ethData = coins.find(coin => coin.name === 'Ethereum');
+            const trxData = coins.find(coin => coin.name === 'TRON');
+            const ltcData = coins.find(coin => coin.name === 'Litecoin');
+
+            // Update BTC price
+            if (btcData) {
+                const btcPrice = parseFloat(btcData.price);
+                document.getElementById('btc-price').innerText = `$${btcPrice.toFixed(2)}`;
+            } else {
+                document.getElementById('btc-price').innerText = 'BTC not found';
+            }
+
+            // Update ETH price
+            if (ethData) {
+                const ethPrice = parseFloat(ethData.price);
+                document.getElementById('eth-price').innerText = `$${ethPrice.toFixed(2)}`;
+            } else {
+                document.getElementById('eth-price').innerText = 'ETH not found';
+            }
+
+            // Update TRX price
+            if (trxData) {
+                const trxPrice = parseFloat(trxData.price);
+                document.getElementById('trx-price').innerText = `$${trxPrice.toFixed(2)}`;
+            } else {
+                document.getElementById('trx-price').innerText = 'TRX not found';
+            }
+
+            // Update LTC price
+            if (ltcData) {
+                const ltcPrice = parseFloat(ltcData.price);
+                document.getElementById('ltc-price').innerText = `$${ltcPrice.toFixed(2)}`;
+            } else {
+                document.getElementById('ltc-price').innerText = 'LTC not found';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching prices:', error);
+            document.getElementById('btc-price').innerText = 'Error fetching BTC price';
+            document.getElementById('eth-price').innerText = 'Error fetching ETH price';
+            document.getElementById('trx-price').innerText = 'Error fetching TRX price';
+            document.getElementById('ltc-price').innerText = 'Error fetching LTC price';
+        });
+    }
+
+    // Fetch live prices every 30 seconds
+    setInterval(fetchLivePrices, 30000);
+    // Initial fetch
+    fetchLivePrices();
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const toggleIcons = document.querySelectorAll(".toggle-balance-icon");
+
+      function updateUI(element, isHidden) {
+          const originalBalance = element.getAttribute("data-balance");
+
+          if (!originalBalance) return; // Ensure data-balance is present
+
+          element.textContent = isHidden ? "*******" : originalBalance;
+          element.setAttribute("data-hidden", isHidden.toString());
+      }
+
+      toggleIcons.forEach(function (icon) {
+          const targetId = icon.getAttribute("data-target");
+          const storageKey = icon.getAttribute("data-key");
+          const balanceElement = document.getElementById(targetId);
+
+          if (!balanceElement) return; // Ensure the balance element exists
+
+          let storedState = localStorage.getItem(storageKey) || "false"; // Default to "false" if null
+          let isHidden = storedState === "true";
+
+          updateUI(balanceElement, isHidden);
+
+          icon.classList.toggle("fa-eye", !isHidden);
+          icon.classList.toggle("fa-eye-slash", isHidden);
+
+          icon.addEventListener("click", function () {
+              const currentlyHidden = balanceElement.getAttribute("data-hidden") === "true";
+              const newHidden = !currentlyHidden;
+
+              updateUI(balanceElement, newHidden);
+
+              icon.classList.toggle("fa-eye", !newHidden);
+              icon.classList.toggle("fa-eye-slash", newHidden);
+
+              localStorage.setItem(storageKey, newHidden.toString());
+          });
+      });
+  });
+</script>
+
+
+{% endblock contents %}

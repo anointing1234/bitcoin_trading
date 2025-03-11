@@ -158,9 +158,10 @@
 	margin-right: 8px;
 }
 
+
 .auth-cover-wrapper,
 .auth-bg-image {
-	background-image: url('../images/background.jpg');
+	background-image: url('../images/signup_image.png') !important;
 	background-repeat: no-repeat;
 	background-size: cover;
 }

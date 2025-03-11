@@ -20,13 +20,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve 
 from django.conf.urls import handler404, handler500
+from accounts import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('access.urls')),
+    path('acc/',include('access.urls')),
     path('accounts/',include('accounts.urls')),
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+    # path("confirm-withdraw/<int:pk>/", confirm_withdraw_view, name="confirm_withdraw"),
+    # path("decline-withdraw/<int:pk>/", decline_withdraw_view, name="decline_withdraw"),
 
 ]
 if settings.DEBUG:

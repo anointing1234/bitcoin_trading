@@ -1,0 +1,76 @@
+{% extends '../core/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block contents %}
+<div class="container">
+    <div class="page-inner bg-dark">
+        <div class="row mb-5 pb-5 p-0">
+            <div class="row mx-1">
+                <h2 class="text-white text-center my-4">Investment Plans</h2>
+                {% for plan in plans %}
+                <div class="col-md-3 my-3">
+                    <div class="card text-center bg-light shadow">
+                        <div class="card-header bg-dark text-white">
+                            <h5>{{ plan.name }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-dark"><strong>{{ plan.percentage }}%</strong> Return</p>
+                            <p>Duration: <strong>{{ plan.duration }}</strong></p>
+                            <p>Min Investment: <strong>${{ plan.min_amount|intcomma }}</strong></p>
+                            <p>Max Investment: <strong>${{ plan.max_amount|intcomma }}</strong></p>
+
+                            <!-- Purchase Plan Button -->
+                            <form method="POST" action="{% url 'purchase-plan' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="plan_id" value="{{ plan.id }}">
+                                <input type="hidden" name="amount" value="{{ plan.min_amount }}">
+                                <button type="submit" class="btn btn-success w-100">Purchase Plan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-white text-center">No investment plans available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Toastify CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<!-- Toastify JS -->
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        {% if messages %}
+            let successMessageShown = false;
+            {% for message in messages %}
+                Toastify({
+                    text: "{{ message|safe }}",
+                    duration: 5000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "{% if message.tags == 'success' %}green{% else %}red{% endif %}",
+                }).showToast();
+
+                {% if message.tags == 'success' %}
+                    successMessageShown = true;
+                {% endif %}
+            {% endfor %}
+
+            // Redirect after 5 seconds if a success message was shown
+            if (successMessageShown) {
+                setTimeout(function () {
+                    window.location.href = "{% url 'view_plans' %}";  // Redirect to the view plan page
+                }, 5000); // Adjust timeout as needed
+            }
+        {% endif %}
+    });
+</script>
+
+{% endblock contents %}

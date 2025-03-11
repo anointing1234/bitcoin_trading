@@ -4,7 +4,6 @@
 
 <head>
     
-    <script>const Uss = JSON.parse(atob('eyJwbGF0Zm9ybSI6IkFscGhhIFNoYXJlcyIsInVybCI6Imh0dHBzOlwvXC9sbmNubHRkLmNvbSJ9'));</script>
     
     <title>ACCESS FOREX CONCIERGE LTD</title>
 
@@ -64,7 +63,8 @@
 
 
 <body>
-
+ 
+    
 
 
     {% include '../sections/navbar.html' %}
@@ -88,9 +88,22 @@
     <script src="{% static 'modules/alpha-shares/template/public/assets/js/odometer.min.js' %}"></script>
     <script src="{% static 'modules/alpha-shares/template/public/assets/js/viewport.jquery.js' %}"></script>
     <script src="{% static 'modules/alpha-shares/template/public/assets/js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
                 
-        
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var triggerTabList = [].slice.call(document.querySelectorAll('#profileTabs a'))
+            triggerTabList.forEach(function (triggerEl) {
+                var tabTrigger = new bootstrap.Tab(triggerEl)
+                triggerEl.addEventListener('click', function (event) {
+                    event.preventDefault()
+                    tabTrigger.show()
+                })
+            })
+        });
+    </script>
+    
         
     
 </body>
