@@ -34,8 +34,9 @@ SECRET_KEY = 'django-insecure-b#&u@^jh3y0ix6l_86h+g3#n08hp+cv^$rm2pb)imb#&rkxx0w
 DEBUG = False
 
 # ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://accessconciergefx.com"]
-ALLOWED_HOSTS = ["accessconciergefx.com"]
+ALLOWED_HOSTS = ["accessconciergefx.com", "www.accessconciergefx.com"]
+CSRF_TRUSTED_ORIGINS = ["https://accessconciergefx.com", "https://www.accessconciergefx.com"]
+
 
 
 # Application definition
@@ -301,80 +302,3 @@ UNFOLD = {
 
 
 
-
-# UNFOLD = {
-#     "SITE_HEADER": "AccessForexConcierge",
-#     "SHOW_SIDEBAR": True,
-#     "SITE_TITLE": "AccessForexConcierge",
-#     "SITE_SUBHEADER": "AccessForexConcierge Admin Panel",
-#     "SITE_URL": "/",
-#     "SITE_ICON": {
-#         "light": lambda request: static("modules/uss-dashboard/GUI/assets/images/logo.png"),
-#         "dark": lambda request: static("modules/uss-dashboard/GUI/assets/images/logo.png"),
-#     },
-#     "SITE_LOGO": {
-#         "light": lambda request: static("modules/uss-dashboard/GUI/assets/images/logo.png"),
-#         "dark": lambda request: static("modules/uss-dashboard/GUI/assets/images/logo.png"),
-#     },
-#     "SIDEBAR": {
-#         "show_search": True,
-#         "show_all_applications": True,
-#         "navigation": [
-#             {
-#                 "title": _("User Management"),
-#                 "icon": "account_circle",
-#                 "collapsible": False,
-#                 "items": [
-#                     {
-#                         "title": _("Users"),
-#                         "icon": "group",
-#                         "link": reverse_lazy("admin:accounts_account_changelist"),
-#                     },
-#                     {
-#                         "title": _("Account Balances"),
-#                         "icon": "account_balance_wallet",
-#                         "link": reverse_lazy("admin:accounts_balance_changelist"),
-#                     },
-#                     {
-#                         "title": _("Wallet Addresses"),
-#                         "icon": "wallet",
-#                         "link": reverse_lazy("admin:accounts_walletaddress_changelist"),
-#                     },
-#                     {
-#                         "title": _("Referrals"),
-#                         "icon": "person_add",
-#                         "link": reverse_lazy("admin:accounts_referral_changelist"),
-#                     },
-#                 ],
-#             },
-#             {
-#                 "title": _("Financial Services"),
-#                 "icon": "attach_money",
-#                 "collapsible": True,
-#                 "separator": True,
-#                 "items": [
-#                     {
-#                         "title": _("Forex Plans"),
-#                         "icon": "monetization_on",
-#                         "link": reverse_lazy("admin:accounts_forexplan_changelist"),
-#                     },
-#                     {
-#                         "title": _("Payment Gateways"),
-#                         "icon": "payment",
-#                         "link": reverse_lazy("admin:accounts_paymentgateway_changelist"),
-#                     },
-#                     {
-#                         "title": _("Deposit Transactions"),
-#                         "icon": "account_balance",
-#                         "link": reverse_lazy("admin:accounts_deposittransaction_changelist"),
-#                     },
-#                     {
-#                         "title": _("Withdrawal Transactions"),
-#                         "icon": "swap_horiz",
-#                         "link": reverse_lazy("admin:accounts_withdrawtransaction_changelist"),
-#                     },
-#                 ],
-#             },
-#         ],
-#     },
-# }
