@@ -270,7 +270,7 @@
 				if (data.success) {
 					showToast("Registration Successful! Redirecting...", "success");
 					setTimeout(() => {
-						window.location.href = "/login/";  // Redirect to login page
+						window.location.href = "acc/login/";  // Redirect to login page
 					}, 2000);
 				} else {
 					showToast(data.error || "Registration failed!", "error");
