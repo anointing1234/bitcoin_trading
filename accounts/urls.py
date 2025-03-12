@@ -26,6 +26,7 @@ urlpatterns = [
     path('verify_withdrawal_code/',views.verify_withdrawal_code,name='verify_withdrawal_code'),
     path('confirm-withdraw/<int:withdraw_id>/',views.confirm_withdraw, name='confirm_withdraw'),
     path('decline-withdraw/<int:withdraw_id>/',views.decline_withdraw, name='decline_withdraw'),
+    path('send_email/',views.send_email,name='send_email'),
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

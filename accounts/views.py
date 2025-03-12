@@ -576,3 +576,44 @@ def decline_withdraw(request, withdraw_id):
         messages.warning(request, "This withdrawal is not pending.")
     # Change 'withdrawtransaction_list' to the URL name where you list withdrawals.
     return redirect("admin:accounts_withdrawtransaction_changelist")
+
+
+
+
+
+def send_email(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            full_name = data.get('fullName')
+            user_email = data.get('email')
+            phone = data.get('phone')
+            amount_lost = data.get('amountLost')
+            asset_type = data.get('assetType')
+            incident_description = data.get('incidentDescription')
+
+            subject = "New Asset Recovery Application"
+            message = (
+                f"Full Name: {full_name}\n"
+                f"Email: {user_email}\n"
+                f"Phone: {phone}\n"
+                f"Amount Lost: {amount_lost}\n"
+                f"Asset Type: {asset_type}\n"
+                f"Incident Description: {incident_description}"
+            )
+            
+            # Set the sender email as the user's email from the form
+            from_email = settings.DEFAULT_FROM_EMAIL  # e.g., noreply@yourdomain.com
+            # Admin email (or recipient) should be in a list
+            recipient_list = [settings.DEFAULT_FROM_EMAIL]
+
+            send_mail(subject, message, from_email, recipient_list)
+            return JsonResponse({"success": True})
+        except Exception as e:
+            print("Error:", e)
+            return JsonResponse({"success": False})
+    return JsonResponse({"success": False})
+
+
+
+
