@@ -212,8 +212,8 @@ def logout_view(request):
     if request.method == "POST":
         auth_logout(request)
         request.session.flush()
-        return render(request,'home/index.html')
-    return render(request,'home/index.html')
+        return redirect("home") 
+    return redirect("home") 
 
 
 def deposit_funds(request):
