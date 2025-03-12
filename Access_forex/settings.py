@@ -273,11 +273,6 @@ UNFOLD = {
                 "collapsible": True,
                 "separator": True,
                 "items": [
-                    {
-                       "title": _("Forex Plans"),
-                         "icon": "monetization_on",
-                         "link": reverse_lazy("admin:accounts_forexplan_changelist"),
-                     },
                      {
                          "title": _("Payment Gateways"),
                          "icon": "payment",
