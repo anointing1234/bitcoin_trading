@@ -617,3 +617,29 @@ def send_email(request):
 
 
 
+
+def contact_send_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('contact_name')
+        email = request.POST.get('contact_email')
+        message_content = request.POST.get('contact_message')
+
+        if name and email and message_content:
+            subject = f"New message from {name}"
+            message_body = f"From: {name} ({email})\n\nMessage:\n{message_content}"
+            try:
+                send_mail(
+                    subject,
+                    message_body,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [settings.DEFAULT_FROM_EMAIL]  # Make sure you have this set in settings.py
+                )
+                messages.success(request, "Your message has been sent successfully!")
+            except Exception as e:
+                messages.error(request, "Error sending message. Please try again later.")
+        else:
+            messages.error(request, "Please fill out all fields.")
+
+        return redirect('contact')  # Redirect to the same page (change if needed)
+
+    return render(request, 'home/contact_us.html')
