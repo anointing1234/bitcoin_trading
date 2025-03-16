@@ -1,6 +1,53 @@
 {% extends 'core/base/base.html' %}
 {% load static %}
 {% block contents %}
+
+
+<style>
+   
+    .quiz-container {
+        max-width: 700px;
+        margin: auto;
+        margin-top: 50px;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .quiz-options p {
+        color:black;
+    }
+  
+    .carousel-item {
+        text-align: center;
+    }
+    .quiz-question {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color:black;
+    }
+    .quiz-options input {
+        margin-right: 10px;
+    }
+    .quiz-button {
+        background-color: #d32f2f;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+    .quiz-button:hover {
+        background-color: #b71c1c;
+    }
+    .progress {
+        height: 5px;
+    }
+</style>
     
 <div class="inner-banner section-bg overflow-hidden">
     <div class="container">
@@ -144,6 +191,119 @@
         </div>
     </div>
 </section>
+
+
+
+<h3 class="text-white mb-3 mt-2 text-center">TEST YOUR CYBERSECURITY SMARTS</h3>
+
+
+<section class="mt-5 mb-5">   
+<div class="quiz-container">
+    <!-- Progress Bar -->
+    <div class="progress">
+        <div id="progressBar" class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+    </div>
+
+    <!-- Bootstrap Carousel for Quiz -->
+    <div id="quizCarousel" class="carousel slide" data-bs-interval="false">
+        <div class="carousel-inner">
+
+            <!-- Question 1 -->
+            <div class="carousel-item active">
+                <p class="quiz-question">1. What is the best way to create a strong password?</p>
+                <div class="quiz-options">
+                    <p><input type="radio" name="q1" value="0"> Using personal details</p>
+                    <p><input type="radio" name="q1" value="1"> A long mix of letters, numbers, and symbols</p>
+                    <p><input type="radio" name="q1" value="0"> Reusing old passwords</p>
+                </div>
+                <button class="quiz-button next-btn" data-bs-target="#quizCarousel" data-bs-slide="next">Next</button>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="carousel-item">
+                <p class="quiz-question">2. How can you recognize a phishing email?</p>
+                <div class="quiz-options">
+                    <p><input type="radio" name="q2" value="0"> It comes from an unknown sender</p>
+                    <p><input type="radio" name="q2" value="0"> It asks for login details</p>
+                    <p><input type="radio" name="q2" value="1"> Both A and B</p>
+                </div>
+                <button class="quiz-button next-btn" data-bs-target="#quizCarousel" data-bs-slide="next">Next</button>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="carousel-item">
+                <p class="quiz-question">3. What should you do if you receive a suspicious link?</p>
+                <div class="quiz-options">
+                    <p><input type="radio" name="q3" value="0"> Click to verify</p>
+                    <p><input type="radio" name="q3" value="1"> Ignore or report it</p>
+                    <p><input type="radio" name="q3" value="0"> Forward to friends</p>
+                </div>
+                <button class="quiz-button next-btn" data-bs-target="#quizCarousel" data-bs-slide="next">Next</button>
+            </div>
+
+            <!-- Final Screen -->
+            <div class="carousel-item">
+                <p class="quiz-question">Quiz Completed!</p>
+                <p id="scoreMessage"></p>
+                <button class="quiz-button" onclick="restartQuiz()">Restart Quiz</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</section>
+
+
+<script>
+    let currentQuestion = 0;
+    let totalQuestions = 3;
+    let score = 0;
+
+    document.querySelectorAll('.next-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            currentQuestion++;
+            updateProgressBar();
+            checkAnswer();
+        });
+    });
+
+    function updateProgressBar() {
+        let progress = (currentQuestion / totalQuestions) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+    }
+
+    function checkAnswer() {
+        let currentSlide = document.querySelectorAll('.carousel-item')[currentQuestion - 1];
+        let selectedOption = currentSlide.querySelector('input[type="radio"]:checked');
+
+        if (selectedOption && selectedOption.value === "1") {
+            score++;
+        }
+
+        if (currentQuestion === totalQuestions) {
+            showScore();
+        }
+    }
+
+    function showScore() {
+        let message = "";
+        if (score === totalQuestions) {
+            message = "🏆 Excellent! You got all answers correct!";
+        } else if (score > 1) {
+            message = "👏 Good job! You scored " + score + "/" + totalQuestions;
+        } else {
+            message = "❌ You need more practice. Score: " + score + "/" + totalQuestions;
+        }
+        document.getElementById("scoreMessage").innerText = message;
+    }
+
+    function restartQuiz() {
+        location.reload();
+    }
+</script>
+
+
+
 <!-- Asset Recovery Team Section Ends Here -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
