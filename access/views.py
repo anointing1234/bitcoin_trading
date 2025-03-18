@@ -24,7 +24,7 @@ import requests
 from django.contrib.auth.decorators import login_required
 # from accounts.models import Transaction,Card
 from django.db.models import Sum
-from accounts.models import ForexPlan,PaymentGateway,DepositTransaction,WalletAddress,Users_Investment,WithdrawTransaction
+from accounts.models import ForexPlan,PaymentGateway,DepositTransaction,WalletAddress,Users_Investment,WithdrawTransaction,TingaTingaPlan
 from django.db.models import Sum
 
 
@@ -42,9 +42,6 @@ def plan(request):
 def faq(request):
     return render(request,'home/faq.html')
 
-
-def assets_recovery(request):
-    return render(request,'home/accessrecovery.html')    
 
 
 def contact(request):
@@ -87,8 +84,13 @@ def Deposit_his_view(request):
     return render(request,'Dashboard/pages/Deposit_history.html',context)            
 
 def purchase_plan(request):
-    plans = ForexPlan.objects.all() 
-    return render(request,'Dashboard/pages/purchase_plan.html',{'plans': plans})            
+    forex_plans = ForexPlan.objects.all()  
+    tinga_tinga_plans = TingaTingaPlan.objects.all()  # Fetch Tinga Tinga plans
+    
+    return render(request, 'Dashboard/pages/purchase_plan.html', {
+        'plans': forex_plans,
+        'tinga_tinga_plans': tinga_tinga_plans  
+    })
 
 def view_plans(request):
     purchased_plans = Users_Investment.objects.filter(user=request.user).order_by('-start_date')

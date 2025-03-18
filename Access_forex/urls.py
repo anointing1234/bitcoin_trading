@@ -23,14 +23,14 @@ from django.conf.urls import handler404, handler500
 from accounts import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/',admin.site.urls),
     path('en/',include('access.urls')),
+    path('assets_recovery/',include('asset_recovery.urls')),
     path('accounts/',include('accounts.urls')),
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     # path("confirm-withdraw/<int:pk>/", confirm_withdraw_view, name="confirm_withdraw"),
     # path("decline-withdraw/<int:pk>/", decline_withdraw_view, name="decline_withdraw"),
-
 ]
 if settings.DEBUG:
     urlpatterns +=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from unfold.admin import ModelAdmin as UnfoldModelAdmin
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from .models import Account, Balance ,ForexPlan,DepositTransaction,WithdrawTransaction,WalletAddress, Referral, PaymentGateway,Users_Investment,TransactionCodes
+from .models import Account, Balance ,ForexPlan,DepositTransaction,WithdrawTransaction,WalletAddress, Referral, PaymentGateway,Users_Investment,TransactionCodes,TingaTingaPlan
 from django.utils.html import format_html
 from django.conf import settings
 from django.urls import reverse
@@ -212,3 +212,12 @@ admin.site.site_header = "Transaction Codes Management"
 admin.site.site_title = "Transaction Codes Admin"
 admin.site.index_title = "Manage Transaction Codes"
 
+
+
+
+@admin.register(TingaTingaPlan)
+class TingaTingaPlanAdmin(UnfoldModelAdmin):
+    list_display = ("name", "percentage", "min_amount", "max_amount", "duration_days")
+    list_filter = ("percentage", "duration_days")
+    search_fields = ("name",)
+    ordering = ("percentage",)

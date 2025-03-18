@@ -24,9 +24,18 @@
                             <form method="POST" action="{% url 'purchase-plan' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="plan_id" value="{{ plan.id }}">
-                                <input type="hidden" name="amount" value="{{ plan.min_amount }}">
+                                
+                                <div class="mb-2">
+                                    <label for="amount_{{ plan.id }}" class="form-label">Enter Investment Amount ($)</label>
+                                    <input type="number" name="amount" id="amount_{{ plan.id }}" class="form-control" 
+                                        min="{{ plan.min_amount }}" max="{{ plan.max_amount }}" required
+                                        onblur="if (this.value < {{ plan.min_amount }}) this.value = {{ plan.min_amount }};">
+                                </div>
+                            
                                 <button type="submit" class="btn btn-success w-100">Purchase Plan</button>
                             </form>
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -35,6 +44,56 @@
                 {% endfor %}
             </div>
         </div>
+
+       <!-- Tinga Tinga Robot Section -->
+<div class="row mb-5 pb-5 p-0">
+    <div class="col-12">
+        <h2 class="text-white text-center my-4">
+            <i class="fas fa-robot me-2"></i> Tinga Tinga AI Trading Bot
+        </h2>
+        {% if tinga_tinga_plans %}
+            <div class="row">
+                {% for plan in tinga_tinga_plans %}
+                <div class="col-md-3 my-3">
+                    <div class="card text-center bg-light shadow">
+                        <div class="card-header bg-dark text-white">
+                            <h5>
+                                <i class="fas fa-robot me-2"></i> {{ plan.name }}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-dark"><strong>{{ plan.percentage }}%</strong> Daily Return</p>
+                            <p>Duration: <strong>{{ plan.duration_days }}</strong> Days</p>
+                            <p>Min Investment: <strong>${{ plan.min_amount|intcomma }}</strong></p>
+                            <p>Max Investment: <strong>${{ plan.max_amount|intcomma }}</strong></p>
+
+                            <!-- Purchase Plan Button -->
+                            <form method="POST" action="{% url 'purchase-plan' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="plan_id" value="{{ plan.id }}">
+                                
+                                <div class="mb-2">
+                                    <label for="amount_{{ plan.id }}" class="form-label">Enter Investment Amount ($)</label>
+                                    <input type="number" name="amount" id="amount_{{ plan.id }}" class="form-control" 
+                                        min="{{ plan.min_amount }}" max="{{ plan.max_amount }}" required
+                                        onblur="if (this.value < {{ plan.min_amount }}) this.value = {{ plan.min_amount }};">
+                                </div>
+                            
+                                <button type="submit" class="btn btn-success w-100">Purchase Plan</button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-white text-center">No Tinga Tinga AI plans available.</p>
+        {% endif %}
+    </div>
+</div>
+
+
     </div>
 </div>
 

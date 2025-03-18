@@ -4,6 +4,85 @@
 
 
 <style>
+
+    .steps-section {
+        text-align: center;
+        padding: 60px 0;
+    }
+    .steps-title {
+        font-weight: 700;
+        font-size: 28px;
+    }
+    .step-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative;
+        max-width: 900px;
+        margin: auto;
+    }
+    .step-item {
+        width: 220px;
+        text-align: center;
+        position: relative;
+        margin: 20px;
+    }
+    .step-item .icon {
+        width: 60px;
+        height: 60px;
+        background: #f0f4ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #3454D1;
+        margin: auto;
+        position: relative;
+        z-index: 2;
+    }
+    .step-item .step-number {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #3454D1;
+        color: white;
+        font-size: 14px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        z-index: 3;
+    }
+    .step-item h4 {
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 15px;
+    }
+    .step-item p {
+        font-size: 14px;
+        color: #666;
+        padding: 0 10px;
+    }
+    .step-connector {
+        position: absolute;
+        top: 50%;
+        left: 15%;
+        width: 70%;
+        height: 2px;
+        background: #ccc;
+        z-index: 1;
+    }
+    @media (max-width: 768px) {
+        .step-connector {
+            display: none;
+        }
+    }
    
     .quiz-container {
         max-width: 700px;
@@ -25,7 +104,7 @@
     .quiz-question {
         font-size: 20px;
         font-weight: bold;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         color:black;
     }
     .quiz-options input {
@@ -52,7 +131,7 @@
 <div class="inner-banner section-bg overflow-hidden">
     <div class="container">
         <div class="inner__banner__content text-center">
-            <h2 class="title">Asset Recovery Cybersecurity</h2>
+            <h2 class="title">Access Proven Experience Crypto Recovery</h2>
             <ul class="breadcums d-flex flex-wrap justify-content-center">
                 <li><a href="index.htm">Home</a>//</li>
                 <li>Asset Recovery</li>
@@ -132,6 +211,122 @@
     </div>
 </section>
 
+
+<section class="steps-section">
+    <h6 class="text-warning mb-3">HOW WE WORK</h6>
+    <h2 class="steps-title mb-3">Efficient Steps To Crypto Recovery</h2>
+    <div class="step-container">
+        <div class="step-item">
+            <div class="icon">
+                <i class="fa-solid fa-file-alt"></i>
+            </div>
+            <div class="step-number">1</div>
+            <h4>Case Assessment</h4>
+            <p class="text-light">We swiftly assess your situation to gather crucial information and devise a targeted plan for asset recovery.</p>
+        </div>
+        
+        <div class="step-connector"></div>
+
+        <div class="step-item">
+            <div class="icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div class="step-number">2</div>
+            <h4>Asset Tracking</h4>
+            <p class="text-light">Leveraging advanced tools and techniques, we track the movement of your assets across the blockchain with precision.</p>
+        </div>
+
+        <div class="step-connector"></div>
+
+        <div class="step-item">
+            <div class="icon">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="step-number">3</div>
+            <h4>Asset Recovery</h4>
+            <p class="text-light">Our expert team implements agile strategies to recover your lost or stolen crypto assets swiftly and efficiently.</p>
+        </div>
+
+        <div class="step-connector"></div>
+
+        <div class="step-item">
+            <div class="icon">
+                <i class="fa-solid fa-hand-holding-usd"></i>
+            </div>
+            <div class="step-number">4</div>
+            <h4>Asset Refund</h4>
+            <p class="text-light">Once recovered, we ensure a seamless refund process, returning your digital assets to your ownership with confidence.</p>
+        </div>
+    </div>
+</section>
+
+<section class="container mt-5 mb-5">
+    <div id="cryptoSlider" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <div class="card bg-dark text-white shadow-lg border-0 p-4 text-center">
+                    <div class="card-body bg-dark text-white ">
+                        <i class="fa-solid fa-magnifying-glass-dollar fa-3x text-primary mb-3"></i>
+                        <h3 class="card-title">Crypto Analysis Tracking Recovery Refund</h3>
+                        <p class="card-text">
+                            Our advanced tracking system helps monitor transactions and trace lost or stolen crypto assets efficiently.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <div class="card bg-dark text-white  shadow-lg border-0 p-4 text-center">
+                    <div class="card-body bg-dark text-white ">
+                        <i class="fa-solid fa-chart-line fa-3x text-success mb-3"></i>
+                        <h3 class="card-title">Performance Metrics</h3>
+                        <p class="card-text">
+                            We provide in-depth performance analysis to ensure transparency in the crypto recovery process.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <div class="card bg-dark text-white  shadow-lg border-0 p-4 text-center">
+                    <div class="card-body bg-dark text-white ">
+                        <i class="fa-solid fa-tools fa-3x text-warning mb-3"></i>
+                        <h3 class="card-title">Efficient Steps to Crypto Recovery</h3>
+                        <p class="card-text">
+                            Our expert team follows proven strategies to recover lost digital assets quickly and securely.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-item">
+                <div class="card bg-dark text-white  shadow-lg border-0 p-4 text-center">
+                    <div class="card-body bg-dark text-white ">
+                        <i class="fa-solid fa-user-shield fa-3x text-danger mb-3"></i>
+                        <h3 class="card-title">Real Stories of Successful Crypto Recovery</h3>
+                        <p class="card-text">
+                            Read real success stories from users who have reclaimed their lost cryptocurrency with our assistance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#cryptoSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#cryptoSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</section>
+
+
 <!-- Asset Recovery Team Section Starts Here -->
 <section class="asset-recovery-team padding-top padding-bottom">
     <div class="container">
@@ -143,6 +338,37 @@
                 </div>
             </div>
         </div>
+
+        
+ <div class="row justify-content-center gy-5">
+           
+            
+    <div class="col-xl-3 col-lg-4 col-sm-6 mb-5 mt-2">
+        <div class="investor__item">
+            <div class="investor__item-thumb">
+                <img src="{% static 'modules/alpha-shares/template/public/assets/images/recovery/recover_team5.webp' %}" alt="team member">
+            </div>
+            <div class="investor__item-content">
+                <h3 class="name"> Marvel smith </h3>
+                <p class="role">Forensics head of dept personnel</p>
+            </div>
+        </div>
+    </div>
+               
+    <div class="col-xl-3 col-lg-4 col-sm-6 mb-5 mt-2">
+        <div class="investor__item">
+            <div class="investor__item-thumb">
+                <img src="{% static 'modules/alpha-shares/template/public/assets/images/recovery/recover_team6.jpg' %}" alt="team member">
+            </div>
+            <div class="investor__item-content">
+                <h3 class="name">Mark Abene</h3>
+                <p class="role">Cyber & Information Security Consultant</p>
+            </div>
+        </div>
+    </div>
+ 
+</div>
+
         <div class="row justify-content-center gy-5">
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="investor__item">
@@ -189,81 +415,104 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 </section>
-
-
 
 <h3 class="text-white mb-3 mt-2 text-center">TEST YOUR CYBERSECURITY SMARTS</h3>
 
-
 <section class="mt-5 mb-5">   
-<div class="quiz-container">
-    <!-- Progress Bar -->
-    <div class="progress">
-        <div id="progressBar" class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
-    </div>
+    <div class="quiz-container">
+        <!-- Progress Bar -->
+        <div class="progress">
+            <div id="progressBar" class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+        </div>
 
-    <!-- Bootstrap Carousel for Quiz -->
-    <div id="quizCarousel" class="carousel slide" data-bs-interval="false">
-        <div class="carousel-inner">
+        <!-- Bootstrap Carousel for Quiz -->
+        <div id="quizCarousel" class="carousel slide" data-bs-interval="false">
+            <div class="carousel-inner">
 
-            <!-- Question 1 -->
-            <div class="carousel-item active">
-                <p class="quiz-question">1. What is the best way to create a strong password?</p>
-                <div class="quiz-options">
-                    <p><input type="radio" name="q1" value="0"> Using personal details</p>
-                    <p><input type="radio" name="q1" value="1"> A long mix of letters, numbers, and symbols</p>
-                    <p><input type="radio" name="q1" value="0"> Reusing old passwords</p>
+                <!-- Question 1 -->
+                <div class="carousel-item active">
+                    <p class="quiz-question">1. What is the best way to create a strong password?</p>
+                    <div class="quiz-options">
+                        <p><input type="radio" name="q1" value="0"> Using personal details</p>
+                        <p><input type="radio" name="q1" value="1"> A long mix of letters, numbers, and symbols</p>
+                        <p><input type="radio" name="q1" value="0"> Reusing old passwords</p>
+                    </div>
+                    <button class="quiz-button next-btn" data-question="q1">Next</button>
                 </div>
-                <button class="quiz-button next-btn" data-bs-target="#quizCarousel" data-bs-slide="next">Next</button>
-            </div>
 
-            <!-- Question 2 -->
-            <div class="carousel-item">
-                <p class="quiz-question">2. How can you recognize a phishing email?</p>
-                <div class="quiz-options">
-                    <p><input type="radio" name="q2" value="0"> It comes from an unknown sender</p>
-                    <p><input type="radio" name="q2" value="0"> It asks for login details</p>
-                    <p><input type="radio" name="q2" value="1"> Both A and B</p>
+                <!-- Question 2 -->
+                <div class="carousel-item">
+                    <p class="quiz-question">2. How can you recognize a phishing email?</p>
+                    <div class="quiz-options">
+                        <p><input type="radio" name="q2" value="0"> It comes from an unknown sender</p>
+                        <p><input type="radio" name="q2" value="0"> It asks for login details</p>
+                        <p><input type="radio" name="q2" value="1"> Both A and B</p>
+                    </div>
+                    <button class="quiz-button next-btn" data-question="q2">Next</button>
                 </div>
-                <button class="quiz-button next-btn" data-bs-target="#quizCarousel" data-bs-slide="next">Next</button>
-            </div>
 
-            <!-- Question 3 -->
-            <div class="carousel-item">
-                <p class="quiz-question">3. What should you do if you receive a suspicious link?</p>
-                <div class="quiz-options">
-                    <p><input type="radio" name="q3" value="0"> Click to verify</p>
-                    <p><input type="radio" name="q3" value="1"> Ignore or report it</p>
-                    <p><input type="radio" name="q3" value="0"> Forward to friends</p>
+                <!-- Question 3 -->
+                <div class="carousel-item">
+                    <p class="quiz-question">3. What should you do if you receive a suspicious link?</p>
+                    <div class="quiz-options">
+                        <p><input type="radio" name="q3" value="0"> Click to verify</p>
+                        <p><input type="radio" name="q3" value="1"> Ignore or report it</p>
+                        <p><input type="radio" name="q3" value="0"> Forward to friends</p>
+                    </div>
+                    <button class="quiz-button next-btn" data-question="q3">Next</button>
                 </div>
-                <button class="quiz-button next-btn" data-bs-target="#quizCarousel" data-bs-slide="next">Next</button>
-            </div>
 
-            <!-- Final Screen -->
-            <div class="carousel-item">
-                <p class="quiz-question">Quiz Completed!</p>
-                <p id="scoreMessage"></p>
-                <button class="quiz-button" onclick="restartQuiz()">Restart Quiz</button>
-            </div>
+                <!-- Final Screen -->
+                <div class="carousel-item">
+                    <p class="quiz-question">Quiz Completed!</p>
+                    <p id="scoreMessage"></p>
+                    <div id="correctAnswers"></div> <!-- Section to display correct answers -->
+                    <button class="quiz-button" onclick="restartQuiz()">Restart Quiz</button>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 </section>
-
 
 <script>
     let currentQuestion = 0;
     let totalQuestions = 3;
     let score = 0;
 
+    // Correct answers
+    const correctAnswers = {
+        q1: "1",  // A long mix of letters, numbers, and symbols
+        q2: "1",  // Both A and B
+        q3: "1"   // Ignore or report it
+    };
+
     document.querySelectorAll('.next-btn').forEach(button => {
         button.addEventListener('click', function() {
+            let questionName = this.getAttribute("data-question");
+            let selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+
+            if (!selectedOption) {
+                alert("⚠️ Please select an answer before proceeding.");
+                return;
+            }
+
+            if (selectedOption.value === correctAnswers[questionName]) {
+                score++;
+            }
+
             currentQuestion++;
             updateProgressBar();
-            checkAnswer();
+            
+            if (currentQuestion === totalQuestions) {
+                showScore();
+            } else {
+                moveToNextQuestion();
+            }
         });
     });
 
@@ -272,17 +521,9 @@
         document.getElementById('progressBar').style.width = progress + '%';
     }
 
-    function checkAnswer() {
-        let currentSlide = document.querySelectorAll('.carousel-item')[currentQuestion - 1];
-        let selectedOption = currentSlide.querySelector('input[type="radio"]:checked');
-
-        if (selectedOption && selectedOption.value === "1") {
-            score++;
-        }
-
-        if (currentQuestion === totalQuestions) {
-            showScore();
-        }
+    function moveToNextQuestion() {
+        let carousel = new bootstrap.Carousel(document.getElementById('quizCarousel'));
+        carousel.next();
     }
 
     function showScore() {
@@ -295,6 +536,15 @@
             message = "❌ You need more practice. Score: " + score + "/" + totalQuestions;
         }
         document.getElementById("scoreMessage").innerText = message;
+
+        // Show correct answers
+        let correctAnswersHtml = "<h4>✅ Correct Answers:</h4><ul>";
+        correctAnswersHtml += "<li>1. A long mix of letters, numbers, and symbols</li>";
+        correctAnswersHtml += "<li>2. Both A and B</li>";
+        correctAnswersHtml += "<li>3. Ignore or report it</li>";
+        correctAnswersHtml += "</ul>";
+
+        document.getElementById("correctAnswers").innerHTML = correctAnswersHtml;
     }
 
     function restartQuiz() {

@@ -214,7 +214,8 @@ class Users_Investment(models.Model):
     start_date = models.DateTimeField(default=timezone.now)
     end_date = models.DateTimeField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='active')
-    
+    last_updated = models.DateTimeField(default=timezone.now)
+     
     def ends_in(self):
         return (self.end_date - timezone.now()).days if self.end_date > timezone.now() else 0
     
@@ -247,5 +248,26 @@ class TransactionCodes(models.Model):
     def __str__(self):
         return f"{self.user.username}'s Transaction Codes"
                 
+
+
+class TingaTingaPlan(models.Model):
+    """Investment Plans for Tinga Tinga AI Trading Bot"""
+        
+    PERCENTAGE_CHOICES = [
+        (5, '5% Daily'),
+        (10, '10% Daily'),
+        (15, '15% Daily'),  # Fixed the incorrect backtick
+        (20, '20% Daily'),
+    ]
+        
+    name = models.CharField(max_length=100, unique=True)
+    percentage = models.IntegerField(choices=PERCENTAGE_CHOICES, help_text="Daily profit percentage")
+    min_amount = models.DecimalField(max_digits=10, decimal_places=2, help_text="Minimum investment amount")
+    max_amount = models.DecimalField(max_digits=10, decimal_places=2, help_text="Maximum investment amount")
+    duration_days = models.IntegerField(help_text="Duration of the plan in days")  
+  
+    def __str__(self):
+        return f"{self.name} - {self.percentage}% Daily - {self.duration_days} Days"
+    
 
         

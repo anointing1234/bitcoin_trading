@@ -22,11 +22,12 @@
                                         <th>Profit</th>
                                         <th>Daily Inc.</th>
                                         <th>Total</th>
-                                        <th>Ends In</th>
-                                        <th>Elapsed</th>
+                                        <th>start at</th>
+                                        <th>Ends at</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
+                          
                                 <tbody>
                                     {% for plan in purchased_plans %}
                                     <tr>
@@ -35,8 +36,8 @@
                                         <td>${{ plan.profit }}</td>  <!-- Profit from model -->
                                         <td>${{ plan.daily_income }}</td>  <!-- Daily income from model -->
                                         <td>${{ plan.total }}</td>  <!-- Total from model -->
-                                        <td>{{ plan.ends_in }} days</td>  <!-- Method to calculate remaining days -->
-                                        <td>{{ plan.elapsed }} days</td>  <!-- Method to calculate elapsed days -->
+                                        <td>{{ plan.start_date }} days</td>  <!-- Method to calculate remaining days -->
+                                        <td>{{ plan.end_date }} days</td>  <!-- Method to calculate elapsed days -->
                                         <td>
                                             {% if plan.status == 'active' %}
                                                 <span class="badge bg-success">Active</span>

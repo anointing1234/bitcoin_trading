@@ -16,7 +16,7 @@
                               
                             Gain access to over <strong>200 cutting-edge trading software</strong> tools to enhance your trading strategies.
                         </p>
-                        <a href="dashboard/register" class="cmn--btn">Get Started</a>
+                        <a href="{% url 'register' %}" class="cmn--btn">Get Started</a>
                     </div>
                     <div class="banner__thumb d-none d-lg-block">
                         <img src="{% static 'modules/uss-dashboard/GUI/assets/images/devices_846x665.png' %}" alt="banner">
@@ -58,8 +58,8 @@
                             <li>Fast, secure withdrawals</li>
                         </ul>
                         <div class="button__wrapper">
-                            <a href="about.html" class="cmn--btn">Know More</a>
-                            <a href="contact.html" class="cmn--btn2">Contact Us</a>
+                            <a href="{% url 'about' %}" class="cmn--btn">Know More</a>
+                            <a href="{% url 'contact' %}" class="cmn--btn2">Contact Us</a>
                         </div>
                     </div>
                 </div>

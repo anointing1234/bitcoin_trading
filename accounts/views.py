@@ -42,7 +42,7 @@ from .models import Account
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.hashers import check_password
-from .models import  WalletAddress,PaymentGateway,DepositTransaction,WithdrawTransaction,Balance,TransactionCodes,Users_Investment,ForexPlan
+from .models import  WalletAddress,PaymentGateway,DepositTransaction,WithdrawTransaction,Balance,TransactionCodes,Users_Investment,ForexPlan,TingaTingaPlan
 
 User = get_user_model()
 
@@ -411,15 +411,18 @@ def purchase_plan_view(request):
             messages.error(request, "Invalid plan selection!")
             return redirect("purchase_plan")
 
-        # Convert amount to Decimal
-        amount = Decimal(amount)
+        amount = Decimal(amount)  # Convert amount to Decimal
 
-        # Fetch the selected plan
-        plan = get_object_or_404(ForexPlan, id=plan_id)
+        # Fetch the selected plan (ForexPlan or TingaTingaPlan)
+        plan = ForexPlan.objects.filter(id=plan_id).first() or TingaTingaPlan.objects.filter(id=plan_id).first()
+
+        if not plan:
+            messages.error(request, "Invalid plan!")
+            return redirect("purchase_plan")
 
         # Validate investment amount
         if amount < plan.min_amount or amount > plan.max_amount:
-            messages.error(request, f"Investment amount must be between ${plan.min_amount} and ${plan.max_amount}!")
+            messages.error(request, f"Investment must be between ${plan.min_amount} and ${plan.max_amount}!")
             return redirect("purchase_plan")
 
         # Check if user has an active investment in this plan
@@ -440,9 +443,41 @@ def purchase_plan_view(request):
         balance.usdt_balance -= amount
         balance.save()
 
-        # Calculate total profit and daily income
-        total_profit = amount * (Decimal(plan.percentage) / Decimal(100))
-        daily_income = total_profit / Decimal(30)  # Assuming a 30-day cycle
+        # Determine duration in hours/days
+        duration_hours = 0
+        duration_days = 0
+
+        if isinstance(plan, TingaTingaPlan):
+            duration_days = plan.duration_days  # TingaTinga uses days directly
+        else:
+            if "Hour" in plan.duration:
+                duration_hours = int("".join(filter(str.isdigit, plan.duration)))
+            elif "Day" in plan.duration:
+                duration_days = int("".join(filter(str.isdigit, plan.duration)))
+            elif "Week" in plan.duration:
+                duration_days = 7
+            elif "Month" in plan.duration:
+                duration_days = 30
+            elif "Forever" in plan.duration:
+                duration_days = 365 * 10  # 10 years as a placeholder
+
+        # ✅ Fix profit calculation (Ensure percentage is divided correctly)
+        total_profit = amount * (Decimal(plan.percentage) / Decimal(100))  
+
+        # ✅ Set start and end date
+        start_date = timezone.now()
+        if duration_hours:
+            end_date = start_date + timezone.timedelta(hours=duration_hours)
+            daily_income = total_profit / Decimal(duration_hours / 24)  # Convert to daily earnings
+        else:
+            end_date = start_date + timezone.timedelta(days=duration_days)
+            daily_income = total_profit / Decimal(duration_days) if duration_days else total_profit  
+
+        # ✅ Debugging logs
+        print(f"Start Date: {start_date}")  # Check if this prints correctly
+        print(f"End Date: {end_date}")
+        print(f"Total Profit: {total_profit}")
+        print(f"Daily Income: {daily_income}")
 
         # Create investment entry
         Users_Investment.objects.create(
@@ -452,14 +487,15 @@ def purchase_plan_view(request):
             profit=total_profit,
             daily_income=daily_income,
             total=amount + total_profit,
-            start_date=timezone.now(),
-            end_date=timezone.now() + timezone.timedelta(days=30),  # Assuming a 30-day duration
+            start_date=start_date,
+            end_date=end_date,
             status="active",
         )
 
         messages.success(request, f"Plan '{plan.name}' purchased successfully!")
-      
+
     return redirect("purchase_plan")
+
 
 
 
