@@ -423,88 +423,95 @@ def verify_reset_code(request):
     return render(request, "forms/reset_pass.html")
 
 
-
 def purchase_plan_view(request):
     if request.method == "POST":
         plan_id = request.POST.get("plan_id")
-        amount = request.POST.get("amount")
+        plan_type = request.POST.get("plan_type")  # New field
+        amount = request.POST.get("amount", "").strip()
 
-        if not plan_id or not amount:
+        if not plan_id or not amount or not plan_type:
             messages.error(request, "Invalid plan selection!")
             return redirect("purchase_plan")
 
-        amount = Decimal(amount)  # Convert amount to Decimal
+        try:
+            plan_id = int(plan_id)
+            amount = Decimal(amount)
+        except (ValueError, TypeError):
+            messages.error(request, "Invalid input!")
+            return redirect("purchase_plan")
 
-        # Fetch the selected plan (ForexPlan or TingaTingaPlan)
-        plan = ForexPlan.objects.filter(id=plan_id).first() or TingaTingaPlan.objects.filter(id=plan_id).first()
+        # ✅ Determine the correct plan model
+        if plan_type == "forex":
+            plan = ForexPlan.objects.filter(id=plan_id).first()
+        elif plan_type == "tinga":
+            plan = TingaTingaPlan.objects.filter(id=plan_id).first()
+        else:
+            plan = None
 
         if not plan:
             messages.error(request, "Invalid plan!")
             return redirect("purchase_plan")
 
-        # Validate investment amount
+        # ✅ Validate investment amount
         if amount < plan.min_amount or amount > plan.max_amount:
             messages.error(request, f"Investment must be between ${plan.min_amount} and ${plan.max_amount}!")
             return redirect("purchase_plan")
 
-        # Check if user has an active investment in this plan
-        existing_plan = Users_Investment.objects.filter(user=request.user, title=plan.name, status="active").exists()
-        if existing_plan:
+        # ✅ Check if user has an active investment in this plan
+        if Users_Investment.objects.filter(user=request.user, title=plan.name, status="active").exists():
             messages.error(request, f"You already have an active '{plan.name}' plan. Wait until it expires before purchasing again.")
             return redirect("purchase_plan")
 
-        # Get user's balance
-        balance = Balance.objects.get(user=request.user)
+        # ✅ Get user's balance
+        balance = Balance.objects.filter(user=request.user).first()
+        if not balance:
+            messages.error(request, "Balance not found! Please contact support.")
+            return redirect("purchase_plan")
 
-        # Check if user has enough balance
+        # ✅ Check if user has enough balance
         if balance.usdt_balance < amount:
             messages.error(request, "Insufficient balance to purchase this plan!")
             return redirect("purchase_plan")
 
-        # Deduct the amount from user's balance
+        # ✅ Deduct the amount from user's balance
         balance.usdt_balance -= amount
         balance.save()
 
-        # Determine duration in hours/days
-        duration_hours = 0
+        # ✅ Determine investment duration
         duration_days = 0
+        duration_hours = 0
 
-        if isinstance(plan, TingaTingaPlan):
-            duration_days = plan.duration_days  # TingaTinga uses days directly
+        if plan_type == "tinga":
+            duration_days = plan.duration_days  
         else:
-            if "Hour" in plan.duration:
+            duration_str = plan.duration.lower()
+            if "hour" in duration_str:
                 duration_hours = int("".join(filter(str.isdigit, plan.duration)))
-            elif "Day" in plan.duration:
+            elif "day" in duration_str:
                 duration_days = int("".join(filter(str.isdigit, plan.duration)))
-            elif "Week" in plan.duration:
+            elif "week" in duration_str:
                 duration_days = 7
-            elif "Month" in plan.duration:
+            elif "month" in duration_str:
                 duration_days = 30
-            elif "Forever" in plan.duration:
-                duration_days = 365 * 10  # 10 years as a placeholder
+            elif "forever" in duration_str:
+                duration_days = 365 * 10  
 
-        # ✅ Fix profit calculation (Ensure percentage is divided correctly)
-        total_profit = amount * (Decimal(plan.percentage) / Decimal(100))  
+        # ✅ Profit calculation
+        total_profit = amount * (Decimal(plan.percentage) / Decimal(100))
 
         # ✅ Set start and end date
         start_date = timezone.now()
         if duration_hours:
             end_date = start_date + timezone.timedelta(hours=duration_hours)
-            daily_income = total_profit / Decimal(duration_hours / 24)  # Convert to daily earnings
+            daily_income = total_profit / Decimal(duration_hours / 24)
         else:
             end_date = start_date + timezone.timedelta(days=duration_days)
             daily_income = total_profit / Decimal(duration_days) if duration_days else total_profit  
 
-        # ✅ Debugging logs
-        print(f"Start Date: {start_date}")  # Check if this prints correctly
-        print(f"End Date: {end_date}")
-        print(f"Total Profit: {total_profit}")
-        print(f"Daily Income: {daily_income}")
-
-        # Create investment entry
+        # ✅ Create investment entry
         Users_Investment.objects.create(
             user=request.user,
-            uniq_id=str(uuid.uuid4()),  # Unique ID for investment tracking
+            uniq_id=str(uuid.uuid4()),
             title=plan.name,
             profit=total_profit,
             daily_income=daily_income,
@@ -517,6 +524,7 @@ def purchase_plan_view(request):
         messages.success(request, f"Plan '{plan.name}' purchased successfully!")
 
     return redirect("purchase_plan")
+
 
 
 def withdraw_funds(request):

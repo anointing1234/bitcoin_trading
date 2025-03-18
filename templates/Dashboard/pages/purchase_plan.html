@@ -20,11 +20,11 @@
                             <p>Min Investment: <strong>${{ plan.min_amount|intcomma }}</strong></p>
                             <p>Max Investment: <strong>${{ plan.max_amount|intcomma }}</strong></p>
 
-                            <!-- Purchase Plan Button -->
                             <form method="POST" action="{% url 'purchase-plan' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="plan_id" value="{{ plan.id }}">
-                                
+                                <input type="hidden" name="plan_type" value="forex">  <!-- Added plan_type -->
+                            
                                 <div class="mb-2">
                                     <label for="amount_{{ plan.id }}" class="form-label">Enter Investment Amount ($)</label>
                                     <input type="number" name="amount" id="amount_{{ plan.id }}" class="form-control" 
@@ -71,7 +71,8 @@
                             <form method="POST" action="{% url 'purchase-plan' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="plan_id" value="{{ plan.id }}">
-                                
+                                <input type="hidden" name="plan_type" value="tinga">  <!-- Added plan_type -->
+                            
                                 <div class="mb-2">
                                     <label for="amount_{{ plan.id }}" class="form-label">Enter Investment Amount ($)</label>
                                     <input type="number" name="amount" id="amount_{{ plan.id }}" class="form-control" 
@@ -81,7 +82,6 @@
                             
                                 <button type="submit" class="btn btn-success w-100">Purchase Plan</button>
                             </form>
-                            
                         </div>
                     </div>
                 </div>
