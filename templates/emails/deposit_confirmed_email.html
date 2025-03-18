@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deposit Confirmed</title>
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; background: #f7f7f7; padding: 20px; }
+        .container { max-width: 600px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; background: green; color: white; padding: 15px; border-radius: 10px 10px 0 0; }
+        .details { padding: 20px; line-height: 1.6; }
+        .footer { text-align: center; margin-top: 20px; font-size: 12px; color: #777; }
+        .highlight { font-weight: bold; color: green; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Deposit Confirmed ✅</h2>
+        </div>
+        <div class="details">
+            <p>Hello <strong>{{ user.username }}</strong>,</p>
+            <p>Your deposit has been successfully confirmed and credited to your account.</p>
+            <p><strong>Transaction Details:</strong></p>
+            <ul>
+                <li><strong>Amount:</strong> <span class="highlight">${{ amount }}</span></li>
+                <li><strong>Payment Method:</strong> {{ method }}</li>
+                <li><strong>Transaction Reference:</strong> {{ transaction_ref }}</li>
+            </ul>
+            <p>You can now use your funds for transactions.</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Zenflex Bank. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

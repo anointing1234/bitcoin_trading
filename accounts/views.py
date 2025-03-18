@@ -43,6 +43,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.hashers import check_password
 from .models import  WalletAddress,PaymentGateway,DepositTransaction,WithdrawTransaction,Balance,TransactionCodes,Users_Investment,ForexPlan,TingaTingaPlan
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 User = get_user_model()
 
@@ -250,7 +254,7 @@ def deposit_funds(request):
         tx_ref = f"DEP-{uuid.uuid4().hex[:10].upper()}"
 
         # Save the deposit transaction
-        DepositTransaction.objects.create(
+        deposit = DepositTransaction.objects.create(
             user=user,
             method=payment_method,
             amount=deposit_amount,
@@ -259,10 +263,28 @@ def deposit_funds(request):
             status="pending",
         )
 
-        messages.success(request, "Deposit request submitted successfully!")
+        # Send a well-formatted email to the user
+        subject = "Deposit Request Confirmation"
+        email_context = {
+            "user": user,
+            "amount": deposit_amount,
+            "method": payment_method,
+            "transaction_ref": tx_ref,
+            "wallet_address": gateway.wallet_address,  # Assuming the model has this field
+        }
+        message = render_to_string("emails/deposit_email.html", email_context)
+        send_mail(
+            subject,
+            "",  # Plain text alternative (empty because we use HTML)
+            settings.EMAIL_HOST_USER,
+            [user.email],
+            html_message=message,
+        )
+
+        messages.success(request, "Deposit request submitted successfully! A confirmation email has been sent.")
 
         # ✅ Use redirect to make messages persist
-        return redirect("Deposit")  # Ensure 'deposit_page' is the correct URL name for the deposit page
+        return redirect("Deposit")  # Ensure 'Deposit' is the correct URL name
 
     return render(request, "Dashboard/pages/Deposit.html", {"payment_gateways": payment_gateways})
 
@@ -497,8 +519,6 @@ def purchase_plan_view(request):
     return redirect("purchase_plan")
 
 
-
-
 def withdraw_funds(request):
     user = request.user
     balance = Balance.objects.get(user=user)  # Get user's balance
@@ -508,12 +528,13 @@ def withdraw_funds(request):
         withdraw_address = request.POST.get("withdraw_address")
         withdraw_amount = request.POST.get("withdraw_amount")
 
+        # Validate withdrawal amount
         try:
-            withdraw_amount = Decimal(withdraw_amount)
+            withdraw_amount = Decimal(withdraw_amount).quantize(Decimal("0.00"))
         except Exception:
             return JsonResponse({"success": False, "message": "Invalid withdrawal amount."})
 
-        # Check if currency is selected
+        # Ensure required fields are filled
         if not withdraw_currency or not withdraw_address:
             return JsonResponse({"success": False, "message": "Please select a currency and enter a valid address."})
 
@@ -526,7 +547,7 @@ def withdraw_funds(request):
         balance.save()
 
         # Create withdrawal transaction
-        WithdrawTransaction.objects.create(
+        transaction = WithdrawTransaction.objects.create(
             user=user,
             currency=withdraw_currency,
             withdraw_address=withdraw_address,
@@ -535,11 +556,33 @@ def withdraw_funds(request):
             status="pending"
         )
 
-        return JsonResponse({"success": True, "message": "Withdrawal request submitted successfully."})
+        # Send a well-formatted email to the user
+        subject = "Withdrawal Request Confirmation"
+        email_context = {
+            "user": user,
+            "amount": f"{withdraw_amount:,.2f}",
+            "currency": withdraw_currency.upper(),
+            "withdraw_address": withdraw_address,
+            "current_balance": f"{balance.usdt_balance:,.2f}",
+            "transaction_ref": transaction.tx_ref,
+        }
+        message = render_to_string("emails/withdrawal_email.html", email_context)
 
-    # For GET requests, render the page as before
+        try:
+            send_mail(
+                subject,
+                "",  # Plain text alternative (empty because we use HTML)
+                settings.EMAIL_HOST_USER,
+                [user.email],
+                html_message=message,
+            )
+            logger.info(f"Withdrawal email sent successfully to {user.email}")
+        except Exception as e:
+            logger.error(f"Failed to send withdrawal email to {user.email}: {str(e)}")
+
+        return JsonResponse({"success": True, "message": "Withdrawal request submitted successfully. A confirmation email has been sent."})
+
     return render(request, "Dashboard/pages/withdraw.html", {"balance": balance})
-
 
 
 def send_withdrawal_code(request):

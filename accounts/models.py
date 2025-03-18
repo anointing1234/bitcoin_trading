@@ -127,9 +127,18 @@ class WalletAddress(models.Model):
     """User Wallet Address Model"""
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="wallet_addresses")
     address = models.CharField(max_length=255, unique=True)
-    currency = models.CharField(max_length=10, choices=[("BTC", "Bitcoin"), ("ETH", "Ethereum"),
-                                                       ("USDT(TRC)", "USDT(TRC)"),("USDT(ETH)", "USDT(ETH)"), ("LTC", "Litecoin"),
-                                                        ("TRX", "Tron"), ("BCH", "Bitcoin Cash")])
+    currency = models.CharField(
+    max_length=15,  # Increased length to accommodate longer values
+    choices=[
+        ("BTC", "Bitcoin"),
+        ("ETH", "Ethereum"),
+        ("USDT_TRC20", "Tether (USDT - TRC20)"),
+        ("USDT_ERC20", "Tether (USDT - ERC20)"),
+        ("LTC", "Litecoin"),
+        ("TRX", "Tron"),
+        ("BCH", "Bitcoin Cash"),
+    ]
+)
 
     def __str__(self):
         return f"{self.user.email} - {self.currency} Wallet"
@@ -153,7 +162,15 @@ class Referral(models.Model):
 class PaymentGateway(models.Model):
     """Payment Gateway Model"""
     wallet_address = models.CharField(max_length=255, unique=True)
-    currency = models.CharField(max_length=10, choices=[("BTC", "Bitcoin"),("USDT(TRC)", "USDT(TRC)"),("USDT(ETH)", "USDT(ETH)")])
+    currency = models.CharField(
+        max_length=15,  # Increased to fit longer values
+        choices=[
+            ("BTC", "Bitcoin"),
+            ("USDT_TRC20", "Tether (USDT - TRC20)"),
+            ("USDT_ERC20", "Tether (USDT - ERC20)"),
+        ]
+    )
+    
     def __str__(self):
         return f"Gateway - {self.currency}"
 
@@ -181,9 +198,18 @@ class WithdrawTransaction(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="withdrawals")
     uniqid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    currency = models.CharField(max_length=10, choices=[("BTC", "Bitcoin"), ("ETH", "Ethereum"),
-                                                        ("USDT(TRC)", "USDT(TRC)"),("USDT(ETH)", "USDT(ETH)"), ("LTC", "Litecoin"),
-                                                        ("TRX", "Tron"), ("BCH", "Bitcoin Cash")])
+    currency = models.CharField(
+    max_length=15,  # Increased length to accommodate longer values
+    choices=[
+        ("BTC", "Bitcoin"),
+        ("ETH", "Ethereum"),
+        ("USDT_TRC20", "Tether (USDT - TRC20)"),
+        ("USDT_ERC20", "Tether (USDT - ERC20)"),
+        ("LTC", "Litecoin"),
+        ("TRX", "Tron"),
+        ("BCH", "Bitcoin Cash"),
+    ]
+)
     amount = models.DecimalField(max_digits=15, decimal_places=7)
     withdraw_address = models.CharField(max_length=255,null=True)
     tx_ref = models.CharField(max_length=100, unique=True)
@@ -215,7 +241,7 @@ class Users_Investment(models.Model):
     end_date = models.DateTimeField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='active')
     last_updated = models.DateTimeField(default=timezone.now)
-     
+
     def ends_in(self):
         return (self.end_date - timezone.now()).days if self.end_date > timezone.now() else 0
     
