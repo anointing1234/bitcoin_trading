@@ -2,6 +2,16 @@
 {% load static %}
 {% block contents %}
 
+<style>
+    .table th, .table td {
+        padding: 8px;
+        font-size: 10px; /* Smaller text */
+        text-align: left;
+    }
+
+</style>
+
+
 <div class="container">
     <div class="page-inner bg-dark">
         <div class="row justify-content-center">
@@ -17,14 +27,14 @@
                             <table class="table table-sm table-bordered table-hover text-center align-middle">
                                 <thead class="bg-dark text-white">
                                     <tr class="small">  <!-- Reduced text size -->
-                                        <th>Uniq ID</th>
-                                        <th>Title</th>
-                                        <th>Profit</th>
-                                        <th>Daily Inc.</th>
-                                        <th>Total</th>
-                                        <th>start at</th>
-                                        <th>Ends at</th>
-                                        <th>Status</th>
+                                        <th style="font-size:10px;">Uniq ID</th>
+                                        <th style="font-size:10px;">Title</th>
+                                        <th style="font-size:10px;">Profit</th>
+                                        <th style="font-size:10px;">Daily Inc.</th>
+                                        <th style="font-size:10px;">Total</th>
+                                        <th style="font-size:10px;">start at</th>
+                                        <th style="font-size:10px;">Ends at</th>
+                                        <th style="font-size:10px;">Status</th>
                                     </tr>
                                 </thead>
                           
