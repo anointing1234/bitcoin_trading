@@ -74,15 +74,29 @@ def register(request):
             if User.objects.filter(email=email).exists():
                 return JsonResponse({'success': False, 'error': 'Email is already in use!'})
 
-         
             # Create and save user
-            user = User.objects.create_user(email=email,password=password)
+            user = User.objects.create_user(email=email, password=password)
             user.save()
 
             # Log in the user
             login(request, user)
 
-            return JsonResponse({'success': True, 'message': 'Registration successful!'})
+            # Send a professional welcome email
+            subject = "Welcome to Access Forex Concierge"
+            message = (
+                "Dear Valued Customer,\n\n"
+                "Thank you for registering with Access Forex Concierge. We are thrilled to have you onboard.\n\n"
+                "At Access Forex Concierge, we provide exclusive insights and guidance in the world of forex trading. "
+                "Our dedicated team is here to support you as you navigate the markets and pursue your financial goals. "
+                "Should you have any questions or require assistance, please do not hesitate to reach out to us.\n\n"
+                "Best regards,\n"
+                "The Access Forex Concierge Team"
+            )
+            from_email = settings.DEFAULT_FROM_EMAIL
+            recipient_list = [email]
+            send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+
+            return JsonResponse({'success': True, 'message': 'Registration successful! A welcome email has been sent.'})
 
         except Exception as e:
             return JsonResponse({'success': False, 'error': f'Error: {str(e)}'})

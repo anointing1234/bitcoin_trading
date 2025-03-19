@@ -92,16 +92,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>                
 
-
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Random names
-            const names = ["Toby", "Sarah", "James", "Emily", "Michael", "Jessica", "Daniel", "Sophia", "Chris", "Olivia"];
-        
-            // Random withdrawal amounts
-            const amounts = [100, 250, 400, 500, 750, 1200, 3000, 4500];
-        
+            // Random names (30 names)
+            const names = [
+                "Toby", "Sarah", "James", "Emily", "Michael", "Jessica", "Daniel", "Sophia", "Chris", "Olivia",
+                "William", "Emma", "Benjamin", "Ava", "Alexander", "Isabella", "Ethan", "Mia", "Matthew", "Charlotte",
+                "Henry", "Amelia", "Samuel", "Harper", "Joseph", "Evelyn", "David", "Abigail", "Andrew", "Madison"
+            ];
+    
+            // Random withdrawal amounts (higher values)
+            const amounts = [10000, 25000, 40000, 50000, 75000, 120000, 300000, 450000, 1000000, 5000000, 10000000, 22000000];
+    
             // Toast positions
             const positions = [
                 { gravity: "top", position: "left" },
@@ -109,16 +111,18 @@
                 { gravity: "bottom", position: "left" },
                 { gravity: "bottom", position: "right" }
             ];
-        
+    
             function showFakeWithdrawal() {
                 // Pick random name, amount, and position
                 let name = names[Math.floor(Math.random() * names.length)];
                 let amount = amounts[Math.floor(Math.random() * amounts.length)];
+                // Format the amount with commas
+                let formattedAmount = amount.toLocaleString();
                 let position = positions[Math.floor(Math.random() * positions.length)];
-        
+    
                 // Create Toastify notification
                 Toastify({
-                    text: `💰 ${name} withdrew $${amount}`,
+                    text: `💰 ${name} withdrew $${formattedAmount}`,
                     duration: 5000, // Display time
                     gravity: position.gravity, // "top" or "bottom"
                     position: position.position, // "left" or "right"
@@ -135,19 +139,19 @@
                     }
                 }).showToast();
             }
-        
-            // Run fake withdrawals automatically
+    
+            // Run fake withdrawals automatically every 10 seconds
             function startFakeWithdrawals() {
                 showFakeWithdrawal(); // Show first notification immediately
                 setInterval(() => {
                     showFakeWithdrawal();
-                }, Math.floor(Math.random() * (8000 - 3000) + 3000)); // Random interval (3-8 seconds)
+                }, 8000); // Interval set to 10 seconds (10000ms)
             }
-        
+    
             startFakeWithdrawals(); // Start the function
         });
-        </script>
-
+    </script>
+    
 
 
     <script>
